@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite, 15 failed tests</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-Default_suite" class="navigator-link">
+              <span class="suite-name border-failed">Default suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
+                    <span>C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-1133432818\testng-customsuite.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-Default_suite" class="navigator-link ">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-Default_suite" class="navigator-link ">
+                    <span>1 group</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-Default_suite" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-Default_suite" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-Default_suite" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-Default_suite" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">26 methods, 15 failed,   11 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Default_suite">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_MYINFO_04 - Employee adds an emergency contact&quot;, &quot;My Info - Personal Information Management&quot;)">runScenario("TC_MYINFO_04 - Employee adds an emergency contact", "My Info - Personal Information Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_REC_01 - Admin can add a new job vacancy&quot;, &quot;Recruitment - Job Vacancy and Application Management...)">runScenario("TC_REC_01 - Admin can add a new job vacancy", "Recruitment - Job Vacancy and Application Management...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_REC_02 - Vacancy creation fails without job title&quot;, &quot;Recruitment - Job Vacancy and Application M...)">runScenario("TC_REC_02 - Vacancy creation fails without job title", "Recruitment - Job Vacancy and Application M...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_REC_04 - System rejects invalid candidate email&quot;, &quot;Recruitment - Job Vacancy and Application Man...)">runScenario("TC_REC_04 - System rejects invalid candidate email", "Recruitment - Job Vacancy and Application Man...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_LEAVE_03 - Admin can approve employee leave request&quot;, &quot;Leave - Apply and Manage Leave&quot;)">runScenario("TC_LEAVE_03 - Admin can approve employee leave request", "Leave - Apply and Manage Leave")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_LEAVE_01 - Employee can apply for annual leave&quot;, &quot;Leave - Apply and Manage Leave&quot;)">runScenario("TC_LEAVE_01 - Employee can apply for annual leave", "Leave - Apply and Manage Leave")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_PIM_01 - Admin can add a new employee with mandatory fields&quot;, &quot;PIM - Employee Management&quot;)">runScenario("TC_PIM_01 - Admin can add a new employee with mandatory fields", "PIM - Employee Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_LEAVE_02 - System rejects leave with invalid date range&quot;, &quot;Leave - Apply and Manage Leave&quot;)">runScenario("TC_LEAVE_02 - System rejects leave with invalid date range", "Leave - Apply and Manage Leave")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_MYINFO_03 - System rejects invalid date format in DOB field&quot;, &quot;My Info - Personal Information Ma...)">runScenario("TC_MYINFO_03 - System rejects invalid date format in DOB field", "My Info - Personal Information Ma...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_PIM_02 - System rejects duplicate employee ID&quot;, &quot;PIM - Employee Management&quot;)">runScenario("TC_PIM_02 - System rejects duplicate employee ID", "PIM - Employee Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_REC_03 - Admin can add candidate for a vacancy&quot;, &quot;Recruitment - Job Vacancy and Application Mana...)">runScenario("TC_REC_03 - Admin can add candidate for a vacancy", "Recruitment - Job Vacancy and Application Mana...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_LEAVE_05 - Employee applies for single-day leave&quot;, &quot;Leave - Apply and Manage Leave&quot;)">runScenario("TC_LEAVE_05 - Employee applies for single-day leave", "Leave - Apply and Manage Leave")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_MYINFO_02 - Employee can update contact information&quot;, &quot;My Info - Personal Information Management...)">runScenario("TC_MYINFO_02 - Employee can update contact information", "My Info - Personal Information Management...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_LEAVE_04 - Admin can reject employee leave request&quot;, &quot;Leave - Apply and Manage Leave&quot;)">runScenario("TC_LEAVE_04 - Admin can reject employee leave request", "Leave - Apply and Manage Leave")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Default_suite -->
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Default_suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_REC_05 - Admin can search candidates by vacancy&quot;, &quot;Recruitment - Job Vacancy and Application Man...)">runScenario("TC_REC_05 - Admin can search candidates by vacancy", "Recruitment - Job Vacancy and Application Man...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;Login failure with invalid credentials&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">runScenario("Login failure with invalid credentials", "Login Scenarios OrangeHRM Login")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_MYINFO_05 - First name field respects maximum character boundary&quot;, &quot;My Info - Personal Informati...)">runScenario("TC_MYINFO_05 - First name field respects maximum character boundary", "My Info - Personal Informati...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_PIM_03 - Validation triggers when mandatory fields are empty&quot;, &quot;PIM - Employee Management&quot;)">runScenario("TC_PIM_03 - Validation triggers when mandatory fields are empty", "PIM - Employee Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_PIM_04 - Admin can search for an existing employee&quot;, &quot;PIM - Employee Management&quot;)">runScenario("TC_PIM_04 - Admin can search for an existing employee", "PIM - Employee Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_PIM_05 - Admin can delete an employee record&quot;, &quot;PIM - Employee Management&quot;)">runScenario("TC_PIM_05 - Admin can delete an employee record", "PIM - Employee Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;Successful login with valid credentials&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">runScenario("Successful login with valid credentials", "Login Scenarios OrangeHRM Login")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="com.skillio.runner.Runner" class="method navigator-link" hash-for-method="runScenario(&quot;TC_MYINFO_01 - Employee can update their nationality&quot;, &quot;My Info - Personal Information Management&quot;)">runScenario("TC_MYINFO_01 - Employee can update their nationality", "My Info - Personal Information Management")</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Default_suite" class="panel Default_suite">
+          <div class="suite-Default_suite-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">com.skillio.runner.Runner</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">
+                  </a> <!-- runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Data-driven login attempts","Login Scenarios OrangeHRM Login")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.cssSelector: p.oxd-alert-content-text&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.LoginPage.getLoginErrorMessage(LoginPage.java:66)
+	at com.skillio.stepdefinitions.LoginSteps.the_login_result_should_be(LoginSteps.java:53)
+	at ✽.the login result should be &quot;failure&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Admin.features/login.feature:20)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: p.oxd-alert-content-text
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [704d5e79-d947-435d-a1eb-9c868646ccc1, findElement {using=css selector, value=p.oxd-alert-content-text}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 30328, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 704d5e79-d947-435d-a1eb-9c868646ccc1
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_MYINFO_04 - Employee adds an emergency contact&quot;, &quot;My Info - Personal Information Management&quot;)">
+                  </a> <!-- runScenario("TC_MYINFO_04 - Employee adds an emergency contact", "My Info - Personal Information Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_MYINFO_04 - Employee adds an emergency contact","My Info - Personal Information Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@placeholder=&apos;Name&apos;]&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.MyInfoPage.enterContactName(MyInfoPage.java:112)
+	at com.skillio.stepdefinitions.MyInfoSteps.userEntersContactName(MyInfoSteps.java:60)
+	at ✽.user enters contact name &quot;Ravi Kumar&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/MyInfo.Feature/MyInfo.feature:38)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //input[@placeholder=&apos;Name&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [b414da11-3bd9-4d54-bd36-49879a55c693, findElement {using=xpath, value=//input[@placeholder=&apos;Name&apos;]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 16316, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: b414da11-3bd9-4d54-bd36-49879a55c693
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_REC_01 - Admin can add a new job vacancy&quot;, &quot;Recruitment - Job Vacancy and Application Management...)">
+                  </a> <!-- runScenario("TC_REC_01 - Admin can add a new job vacancy", "Recruitment - Job Vacancy and Application Management...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_REC_01 - Admin can add a new job vacancy","Recruitment - Job Vacancy and Application Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@placeholder=&apos;Vacancy Name&apos;]&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.RecruitmentPage.enterVacancyName(RecruitmentPage.java:53)
+	at com.skillio.stepdefinitions.RecruitmentSteps.userEntersVacancyName(RecruitmentSteps.java:25)
+	at ✽.user enters vacancy name &quot;QA Engineer&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Recruitment.Feature/Recruitment.feature:10)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //input[@placeholder=&apos;Vacancy Name&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [39c766cb-aea9-4ac2-96e1-edf8583d24bb, findElement {using=xpath, value=//input[@placeholder=&apos;Vacancy Name&apos;]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 15284, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 39c766cb-aea9-4ac2-96e1-edf8583d24bb
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_REC_02 - Vacancy creation fails without job title&quot;, &quot;Recruitment - Job Vacancy and Application M...)">
+                  </a> <!-- runScenario("TC_REC_02 - Vacancy creation fails without job title", "Recruitment - Job Vacancy and Application M...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_REC_02 - Vacancy creation fails without job title","Recruitment - Job Vacancy and Application Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@placeholder=&apos;Vacancy Name&apos;]&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.RecruitmentPage.enterVacancyName(RecruitmentPage.java:53)
+	at com.skillio.stepdefinitions.RecruitmentSteps.userEntersVacancyName(RecruitmentSteps.java:25)
+	at ✽.user enters vacancy name &quot;DevOps Engineer&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Recruitment.Feature/Recruitment.feature:20)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //input[@placeholder=&apos;Vacancy Name&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [aea0a7e6-f0f7-4051-8e46-d5969c72661f, findElement {using=xpath, value=//input[@placeholder=&apos;Vacancy Name&apos;]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 17356, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: aea0a7e6-f0f7-4051-8e46-d5969c72661f
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_REC_04 - System rejects invalid candidate email&quot;, &quot;Recruitment - Job Vacancy and Application Man...)">
+                  </a> <!-- runScenario("TC_REC_04 - System rejects invalid candidate email", "Recruitment - Job Vacancy and Application Man...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_REC_04 - System rejects invalid candidate email","Recruitment - Job Vacancy and Application Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@type=&apos;email&apos;]&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.RecruitmentPage.enterCandidateEmail(RecruitmentPage.java:80)
+	at com.skillio.stepdefinitions.RecruitmentSteps.userEntersCandidateEmail(RecruitmentSteps.java:58)
+	at ✽.user enters candidate email &quot;invalid-email&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Recruitment.Feature/Recruitment.feature:41)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //input[@type=&apos;email&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [b30f2c63-3e2c-46e3-b578-2dba14fd3fc2, findElement {using=xpath, value=//input[@type=&apos;email&apos;]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 14092, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: b30f2c63-3e2c-46e3-b578-2dba14fd3fc2
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_LEAVE_03 - Admin can approve employee leave request&quot;, &quot;Leave - Apply and Manage Leave&quot;)">
+                  </a> <!-- runScenario("TC_LEAVE_03 - Admin can approve employee leave request", "Leave - Apply and Manage Leave") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_LEAVE_03 - Admin can approve employee leave request","Leave - Apply and Manage Leave")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[normalize-space()=&apos;Approve&apos;].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 8484, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 4f6b1702-cf5d-42dd-85dd-4a9f5eafc4fb
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeClickable(WaitFor.java:61)
+	at com.skillio.pages.LeavePage.clickApprove(LeavePage.java:94)
+	at com.skillio.stepdefinitions.LeaveSteps.userClicksApproveButton(LeaveSteps.java:71)
+	at ✽.user clicks Approve button(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Leave.Feature/Leave.feature:31)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_LEAVE_01 - Employee can apply for annual leave&quot;, &quot;Leave - Apply and Manage Leave&quot;)">
+                  </a> <!-- runScenario("TC_LEAVE_01 - Employee can apply for annual leave", "Leave - Apply and Manage Leave") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_LEAVE_01 - Employee can apply for annual leave","Leave - Apply and Manage Leave")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[@type=&apos;submit&apos;].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 22340, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 3df26047-cda5-4a6b-a8b0-2ca8515d12ca
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeClickable(WaitFor.java:61)
+	at com.skillio.pages.LeavePage.clickSubmit(LeavePage.java:104)
+	at com.skillio.stepdefinitions.LeaveSteps.userClicksApplyButton(LeaveSteps.java:56)
+	at ✽.user clicks Apply button(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Leave.Feature/Leave.feature:11)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_PIM_01 - Admin can add a new employee with mandatory fields&quot;, &quot;PIM - Employee Management&quot;)">
+                  </a> <!-- runScenario("TC_PIM_01 - Admin can add a new employee with mandatory fields", "PIM - Employee Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_PIM_01 - Admin can add a new employee with mandatory fields","PIM - Employee Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Unable to locate element: *[name=&apos;employeeId&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [61726f89-7e0a-4377-891c-a56fa1b8c38d, findElement {using=name, value=employeeId}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 16516, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 61726f89-7e0a-4377-891c-a56fa1b8c38d
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.clear(Unknown Source)
+	at com.skillio.pages.PimPage.enterEmployeeDetails(PimPage.java:69)
+	at com.skillio.stepdefinitions.PimSteps.userEntersEmployeeID(PimSteps.java:47)
+	at ✽.user enters employee ID &quot;EMP001&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/PIM.Feature/PIM.feature:11)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_LEAVE_02 - System rejects leave with invalid date range&quot;, &quot;Leave - Apply and Manage Leave&quot;)">
+                  </a> <!-- runScenario("TC_LEAVE_02 - System rejects leave with invalid date range", "Leave - Apply and Manage Leave") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_LEAVE_02 - System rejects leave with invalid date range","Leave - Apply and Manage Leave")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[@type=&apos;submit&apos;].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 12348, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 0c6ee52d-4cb3-4fe2-a36d-bdedd3c00ac4
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeClickable(WaitFor.java:61)
+	at com.skillio.pages.LeavePage.clickSubmit(LeavePage.java:104)
+	at com.skillio.stepdefinitions.LeaveSteps.userClicksApplyButton(LeaveSteps.java:56)
+	at ✽.user clicks Apply button(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Leave.Feature/Leave.feature:21)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_MYINFO_03 - System rejects invalid date format in DOB field&quot;, &quot;My Info - Personal Information Ma...)">
+                  </a> <!-- runScenario("TC_MYINFO_03 - System rejects invalid date format in DOB field", "My Info - Personal Information Ma...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_MYINFO_03 - System rejects invalid date format in DOB field","My Info - Personal Information Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //span[contains(text(),&apos;Should be a valid date&apos;)]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [d118b5b4-9391-4445-aaf6-8ec330887f97, findElement {using=xpath, value=//span[contains(text(),&apos;Should be a valid date&apos;)]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 18596, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: d118b5b4-9391-4445-aaf6-8ec330887f97
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at com.skillio.pages.MyInfoPage.isDobErrorDisplayed(MyInfoPage.java:142)
+	at com.skillio.stepdefinitions.MyInfoSteps.fieldValidationErrorUnderDob(MyInfoSteps.java:86)
+	at ✽.field validation error should appear under date of birth(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/MyInfo.Feature/MyInfo.feature:30)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_PIM_02 - System rejects duplicate employee ID&quot;, &quot;PIM - Employee Management&quot;)">
+                  </a> <!-- runScenario("TC_PIM_02 - System rejects duplicate employee ID", "PIM - Employee Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_PIM_02 - System rejects duplicate employee ID","PIM - Employee Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Unable to locate element: *[name=&apos;employeeId&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [4a87b0c0-c282-4612-894f-cce413fed20c, findElement {using=name, value=employeeId}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 17132, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 4a87b0c0-c282-4612-894f-cce413fed20c
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.clear(Unknown Source)
+	at com.skillio.pages.PimPage.enterEmployeeDetails(PimPage.java:69)
+	at com.skillio.stepdefinitions.PimSteps.userEntersEmployeeID(PimSteps.java:47)
+	at ✽.user enters employee ID &quot;EMP001&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/PIM.Feature/PIM.feature:21)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_REC_03 - Admin can add candidate for a vacancy&quot;, &quot;Recruitment - Job Vacancy and Application Mana...)">
+                  </a> <!-- runScenario("TC_REC_03 - Admin can add candidate for a vacancy", "Recruitment - Job Vacancy and Application Mana...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_REC_03 - Admin can add candidate for a vacancy","Recruitment - Job Vacancy and Application Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@type=&apos;email&apos;]&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.RecruitmentPage.enterCandidateEmail(RecruitmentPage.java:80)
+	at com.skillio.stepdefinitions.RecruitmentSteps.userEntersCandidateEmail(RecruitmentSteps.java:58)
+	at ✽.user enters candidate email &quot;alice.walker@test.com&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Recruitment.Feature/Recruitment.feature:31)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //input[@type=&apos;email&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [8ddfee5a-bc79-4123-86b8-40c0b9142cdc, findElement {using=xpath, value=//input[@type=&apos;email&apos;]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 20332, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 8ddfee5a-bc79-4123-86b8-40c0b9142cdc
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_LEAVE_05 - Employee applies for single-day leave&quot;, &quot;Leave - Apply and Manage Leave&quot;)">
+                  </a> <!-- runScenario("TC_LEAVE_05 - Employee applies for single-day leave", "Leave - Apply and Manage Leave") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_LEAVE_05 - Employee applies for single-day leave","Leave - Apply and Manage Leave")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[@type=&apos;submit&apos;].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 16260, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: 82a5b1ab-5355-4942-82b4-2a30c7fb2b07
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeClickable(WaitFor.java:61)
+	at com.skillio.pages.LeavePage.clickSubmit(LeavePage.java:104)
+	at com.skillio.stepdefinitions.LeaveSteps.userClicksApplyButton(LeaveSteps.java:56)
+	at ✽.user clicks Apply button(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Leave.Feature/Leave.feature:51)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_MYINFO_02 - Employee can update contact information&quot;, &quot;My Info - Personal Information Management...)">
+                  </a> <!-- runScenario("TC_MYINFO_02 - Employee can update contact information", "My Info - Personal Information Management...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_MYINFO_02 - Employee can update contact information","My Info - Personal Information Management")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //input[@placeholder=&apos;Street 1&apos;]&apos;
+(tried for 30 seconds with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeVisible(WaitFor.java:56)
+	at com.skillio.pages.MyInfoPage.enterStreet1(MyInfoPage.java:91)
+	at com.skillio.stepdefinitions.MyInfoSteps.userEntersStreet1(MyInfoSteps.java:40)
+	at ✽.user enters street1 &quot;123 Main Street&quot;(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/MyInfo.Feature/MyInfo.feature:18)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //input[@placeholder=&apos;Street 1&apos;]
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Command: [af002dac-725b-46a2-bc6a-9b8421ff562d, findElement {using=xpath, value=//input[@placeholder=&apos;Street 1&apos;]}]
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 32628, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: af002dac-725b-46a2-bc6a-9b8421ff562d
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:68)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
+	at jdk.proxy2/jdk.proxy2.$Proxy24.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:367)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:353)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:350)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
+	... 4 more
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_LEAVE_04 - Admin can reject employee leave request&quot;, &quot;Leave - Apply and Manage Leave&quot;)">
+                  </a> <!-- runScenario("TC_LEAVE_04 - Admin can reject employee leave request", "Leave - Apply and Manage Leave") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_LEAVE_04 - Admin can reject employee leave request","Leave - Apply and Manage Leave")</span>
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable, but the element was not found: org.openqa.selenium.NoSuchElementException: Unable to locate element: //button[normalize-space()=&apos;Reject&apos;].
+(tried for 30 seconds with 500 milliseconds interval)
+Build info: version: &apos;4.40.0&apos;, revision: &apos;b3333f1&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.9&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 150.0, moz:accessibilityChecks: false, moz:buildID: 20260415192539, moz:geckodriverVersion: 0.36.0, moz:headless: false, moz:platformVersion: 10.0, moz:processID: 6716, moz:profile: C:\Users\ASUS\AppData\Local..., moz:shutdownTimeout: 60000, moz:webdriverClick: true, moz:windowless: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, userAgent: Mozilla/5.0 (Windows NT 10....}
+Session ID: f13994f9-5041-4de6-ae99-cf282e036070
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.skillio.utils.WaitFor.elementToBeClickable(WaitFor.java:61)
+	at com.skillio.pages.LeavePage.clickReject(LeavePage.java:99)
+	at com.skillio.stepdefinitions.LeaveSteps.userClicksRejectButton(LeaveSteps.java:76)
+	at ✽.user clicks Reject button(file:///C:/Users/ASUS/eclipse-workspace/Rose26A/src/test/resources/FeatureFile/Leave.Feature/Leave.feature:41)
+
+</div> <!-- stack-trace -->
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-failed -->
+          <div class="suite-Default_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.skillio.runner.Runner</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_REC_05 - Admin can search candidates by vacancy&quot;, &quot;Recruitment - Job Vacancy and Application Man...)">
+                  </a> <!-- runScenario("TC_REC_05 - Admin can search candidates by vacancy", "Recruitment - Job Vacancy and Application Man...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_REC_05 - Admin can search candidates by vacancy","Recruitment - Job Vacancy and Application Management")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Login failure with invalid credentials&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">
+                  </a> <!-- runScenario("Login failure with invalid credentials", "Login Scenarios OrangeHRM Login") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Login failure with invalid credentials","Login Scenarios OrangeHRM Login")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_MYINFO_05 - First name field respects maximum character boundary&quot;, &quot;My Info - Personal Informati...)">
+                  </a> <!-- runScenario("TC_MYINFO_05 - First name field respects maximum character boundary", "My Info - Personal Informati...) -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_MYINFO_05 - First name field respects maximum character boundary","My Info - Personal Information Management")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">
+                  </a> <!-- runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Data-driven login attempts","Login Scenarios OrangeHRM Login")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">
+                  </a> <!-- runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Data-driven login attempts","Login Scenarios OrangeHRM Login")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_PIM_03 - Validation triggers when mandatory fields are empty&quot;, &quot;PIM - Employee Management&quot;)">
+                  </a> <!-- runScenario("TC_PIM_03 - Validation triggers when mandatory fields are empty", "PIM - Employee Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_PIM_03 - Validation triggers when mandatory fields are empty","PIM - Employee Management")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_PIM_04 - Admin can search for an existing employee&quot;, &quot;PIM - Employee Management&quot;)">
+                  </a> <!-- runScenario("TC_PIM_04 - Admin can search for an existing employee", "PIM - Employee Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_PIM_04 - Admin can search for an existing employee","PIM - Employee Management")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Data-driven login attempts&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">
+                  </a> <!-- runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Data-driven login attempts","Login Scenarios OrangeHRM Login")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_PIM_05 - Admin can delete an employee record&quot;, &quot;PIM - Employee Management&quot;)">
+                  </a> <!-- runScenario("TC_PIM_05 - Admin can delete an employee record", "PIM - Employee Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_PIM_05 - Admin can delete an employee record","PIM - Employee Management")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;Successful login with valid credentials&quot;, &quot;Login Scenarios OrangeHRM Login&quot;)">
+                  </a> <!-- runScenario("Successful login with valid credentials", "Login Scenarios OrangeHRM Login") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("Successful login with valid credentials","Login Scenarios OrangeHRM Login")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="runScenario(&quot;TC_MYINFO_01 - Employee can update their nationality&quot;, &quot;My Info - Personal Information Management&quot;)">
+                  </a> <!-- runScenario("TC_MYINFO_01 - Employee can update their nationality", "My Info - Personal Information Management") -->
+                  <span class="method-name">runScenario</span>
+                  <span class="parameters">("TC_MYINFO_01 - Employee can update their nationality","My Info - Personal Information Management")</span>
+                  <em>
+(Runs Cucumber Scenarios)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-passed -->
+        </div> <!-- panel Default_suite -->
+        <div panel-name="test-xml-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\ASUS\AppData\Local\Temp\testng-eclipse-1133432818\testng-customsuite.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.skillio.runner.Runner&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Default test --&gt;
+&lt;/suite&gt; &lt;!-- Default suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Default test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="test-group">
+              <span class="test-group-name">cucumber</span>
+              <br/>
+              <div class="method-in-group">
+                <span class="method-in-group-name">runScenario</span>
+                <br/>
+              </div> <!-- method-in-group -->
+            </div> <!-- test-group -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Default_suite');
+function tableData_Default_suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(26);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'runScenario')
+data.setCell(0, 2, 'com.skillio.runner.Runner')
+data.setCell(0, 3, 77155);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'runScenario')
+data.setCell(1, 2, 'com.skillio.runner.Runner')
+data.setCell(1, 3, 68361);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'runScenario')
+data.setCell(2, 2, 'com.skillio.runner.Runner')
+data.setCell(2, 3, 67305);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'runScenario')
+data.setCell(3, 2, 'com.skillio.runner.Runner')
+data.setCell(3, 3, 67267);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'runScenario')
+data.setCell(4, 2, 'com.skillio.runner.Runner')
+data.setCell(4, 3, 66790);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'runScenario')
+data.setCell(5, 2, 'com.skillio.runner.Runner')
+data.setCell(5, 3, 66036);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'runScenario')
+data.setCell(6, 2, 'com.skillio.runner.Runner')
+data.setCell(6, 3, 65544);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'runScenario')
+data.setCell(7, 2, 'com.skillio.runner.Runner')
+data.setCell(7, 3, 65336);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'runScenario')
+data.setCell(8, 2, 'com.skillio.runner.Runner')
+data.setCell(8, 3, 65304);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'runScenario')
+data.setCell(9, 2, 'com.skillio.runner.Runner')
+data.setCell(9, 3, 64300);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'runScenario')
+data.setCell(10, 2, 'com.skillio.runner.Runner')
+data.setCell(10, 3, 64045);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'runScenario')
+data.setCell(11, 2, 'com.skillio.runner.Runner')
+data.setCell(11, 3, 52022);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'runScenario')
+data.setCell(12, 2, 'com.skillio.runner.Runner')
+data.setCell(12, 3, 41368);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'runScenario')
+data.setCell(13, 2, 'com.skillio.runner.Runner')
+data.setCell(13, 3, 39716);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'runScenario')
+data.setCell(14, 2, 'com.skillio.runner.Runner')
+data.setCell(14, 3, 36696);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'runScenario')
+data.setCell(15, 2, 'com.skillio.runner.Runner')
+data.setCell(15, 3, 36471);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'runScenario')
+data.setCell(16, 2, 'com.skillio.runner.Runner')
+data.setCell(16, 3, 33851);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'runScenario')
+data.setCell(17, 2, 'com.skillio.runner.Runner')
+data.setCell(17, 3, 33675);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'runScenario')
+data.setCell(18, 2, 'com.skillio.runner.Runner')
+data.setCell(18, 3, 28106);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'runScenario')
+data.setCell(19, 2, 'com.skillio.runner.Runner')
+data.setCell(19, 3, 26186);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'runScenario')
+data.setCell(20, 2, 'com.skillio.runner.Runner')
+data.setCell(20, 3, 26109);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'runScenario')
+data.setCell(21, 2, 'com.skillio.runner.Runner')
+data.setCell(21, 3, 17844);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'runScenario')
+data.setCell(22, 2, 'com.skillio.runner.Runner')
+data.setCell(22, 3, 17087);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'runScenario')
+data.setCell(23, 2, 'com.skillio.runner.Runner')
+data.setCell(23, 3, 16178);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'runScenario')
+data.setCell(24, 2, 'com.skillio.runner.Runner')
+data.setCell(24, 3, 15528);
+data.setCell(25, 0, 25)
+data.setCell(25, 1, 'runScenario')
+data.setCell(25, 2, 'com.skillio.runner.Runner')
+data.setCell(25, 3, 15282);
+window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 19 minutes</span>
+              <div id="times-div-Default_suite">
+              </div> <!-- times-div-Default_suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.skillio.runner.Runner</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUpClass(org.testng.TestRunner@3c4231e5)</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">runScenario("Successful login with valid credentials", "Login Scenarios OrangeHRM Login")</span>
+                <span class="method-start">1004 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("Login failure with invalid credentials", "Login Scenarios OrangeHRM Login")</span>
+                <span class="method-start">18852 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</span>
+                <span class="method-start">34136 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</span>
+                <span class="method-start">49666 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</span>
+                <span class="method-start">65846 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("Data-driven login attempts", "Login Scenarios OrangeHRM Login")</span>
+                <span class="method-start">82935 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_LEAVE_01 - Employee can apply for annual leave", "Leave - Apply and Manage Leave")</span>
+                <span class="method-start">134960 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_LEAVE_02 - System rejects leave with invalid date range", "Leave - Apply and Manage Leave")</span>
+                <span class="method-start">200265 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_LEAVE_03 - Admin can approve employee leave request", "Leave - Apply and Manage Leave")</span>
+                <span class="method-start">267057 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_LEAVE_04 - Admin can reject employee leave request", "Leave - Apply and Manage Leave")</span>
+                <span class="method-start">335420 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_LEAVE_05 - Employee applies for single-day leave", "Leave - Apply and Manage Leave")</span>
+                <span class="method-start">399467 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("TC_MYINFO_01 - Employee can update their nationality", "My Info - Personal Information Management")</span>
+                <span class="method-start">464804 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_MYINFO_02 - Employee can update contact information", "My Info - Personal Information Management...)</span>
+                <span class="method-start">501276 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_MYINFO_03 - System rejects invalid date format in DOB field", "My Info - Personal Information Ma...)</span>
+                <span class="method-start">568545 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_MYINFO_04 - Employee adds an emergency contact", "My Info - Personal Information Management")</span>
+                <span class="method-start">608263 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("TC_MYINFO_05 - First name field respects maximum character boundary", "My Info - Personal Informati...)</span>
+                <span class="method-start">685420 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_PIM_01 - Admin can add a new employee with mandatory fields", "PIM - Employee Management")</span>
+                <span class="method-start">726790 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_PIM_02 - System rejects duplicate employee ID", "PIM - Employee Management")</span>
+                <span class="method-start">760642 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("TC_PIM_03 - Validation triggers when mandatory fields are empty", "PIM - Employee Management")</span>
+                <span class="method-start">797340 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("TC_PIM_04 - Admin can search for an existing employee", "PIM - Employee Management")</span>
+                <span class="method-start">831016 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("TC_PIM_05 - Admin can delete an employee record", "PIM - Employee Management")</span>
+                <span class="method-start">859123 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_REC_01 - Admin can add a new job vacancy", "Recruitment - Job Vacancy and Application Management...)</span>
+                <span class="method-start">885233 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_REC_02 - Vacancy creation fails without job title", "Recruitment - Job Vacancy and Application M...)</span>
+                <span class="method-start">951271 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_REC_03 - Admin can add candidate for a vacancy", "Recruitment - Job Vacancy and Application Mana...)</span>
+                <span class="method-start">1018578 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">runScenario("TC_REC_04 - System rejects invalid candidate email", "Recruitment - Job Vacancy and Application Man...)</span>
+                <span class="method-start">1084123 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">runScenario("TC_REC_05 - Admin can search candidates by vacancy", "Recruitment - Job Vacancy and Application Man...)</span>
+                <span class="method-start">1148425 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDownClass</span>
+                <span class="method-start">1174613 ms</span>
+              </div> <!-- configuration-class after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>
