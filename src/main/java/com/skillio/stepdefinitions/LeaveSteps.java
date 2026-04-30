@@ -1,15 +1,12 @@
 package com.skillio.stepdefinitions;
 
 import org.testng.Assert;
-
-import com.skillio.base.Keyword;
 import com.skillio.pages.LeavePage;
-import com.skillio.pages.LoginPage;
-
 import io.cucumber.java.en.*;
 
 public class LeaveSteps {
 
+    // ✅ Single object (lazy initialization)
     private LeavePage leave;
 
     private LeavePage getLeavePage() {
@@ -19,7 +16,7 @@ public class LeaveSteps {
         return leave;
     }
 
-    // ── Navigation ────────────────────────────────────────────────────────────
+    // ── Navigation ─────────────────────────────────────────
 
     @When("user navigates to Leave module")
     public void userNavigatesToLeaveModule() {
@@ -28,11 +25,7 @@ public class LeaveSteps {
 
     @When("user clicks {string} option")
     public void userClicksOption(String option) {
-        if ("Apply".equalsIgnoreCase(option)) {
-            getLeavePage().clickApply();
-        } else if ("Leave List".equalsIgnoreCase(option)) {
-            getLeavePage().clickLeaveList();
-        }
+        getLeavePage().clickLeaveSubMenu(option);
     }
 
     @When("user selects leave type {string}")
@@ -41,9 +34,9 @@ public class LeaveSteps {
     }
 
     @When("user enters from date {string} and to date {string}")
-    public void userEntersFromAndToDate(String from, String to) {
-        getLeavePage().enterFromDate(from);
-        getLeavePage().enterToDate(to);
+    public void userEntersFromDateAndToDate(String fromDate, String toDate) {
+        getLeavePage().enterFromDate(fromDate);
+        getLeavePage().enterToDate(toDate);
     }
 
     @When("user enters comment {string}")
@@ -53,7 +46,7 @@ public class LeaveSteps {
 
     @When("user clicks Apply button")
     public void userClicksApplyButton() {
-        getLeavePage().clickSubmit();
+        getLeavePage().clickApplyButton();
     }
 
     @When("user filters by status {string}")
@@ -66,6 +59,11 @@ public class LeaveSteps {
         getLeavePage().openFirstPendingRequest();
     }
 
+    @When("user opens a leave request with status {string}")
+    public void userOpensLeaveRequestWithStatus(String status) {
+        getLeavePage().openLeaveRequestByStatus(status);
+    }
+
     @When("user clicks Approve button")
     public void userClicksApproveButton() {
         getLeavePage().clickApprove();
@@ -76,23 +74,70 @@ public class LeaveSteps {
         getLeavePage().clickReject();
     }
 
-    // ── Assertions ────────────────────────────────────────────────────────────
-
-    @Then("leave request should be submitted with status {string}")
-    public void leaveRequestShouldBeSubmitted(String status) {
-        Assert.assertTrue(getLeavePage().isSuccessToastDisplayed(),
-            "Leave request was not submitted successfully. Expected status: " + status);
+    @When("user clicks Cancel button on leave request")
+    public void userClicksCancelButtonOnLeaveRequest() {
+        getLeavePage().clickCancel();
     }
 
-    @Then("leave date error {string} should be displayed")
-    public void leaveDateErrorShouldBeDisplayed(String message) {
-        Assert.assertTrue(getLeavePage().isDateErrorDisplayed(),
-            "Expected date error: " + message);
+    // ─── THEN ─────────────────────────────────────────────
+
+    @Then("leave request should be submitted with status {string}")
+    public void leaveRequestShouldBeSubmitted(String expectedStatus) {
+        Assert.assertTrue(
+            getLeavePage().isSuccessToastDisplayed(),
+            "Leave submission failed. Expected status: " + expectedStatus
+        );
+    }
+
+    @Then("error message {string} should be displayed")
+    public void errorMessageShouldBeDisplayed(String expectedMessage) {
+        String actual = getLeavePage().getDateOrValidationError();
+        Assert.assertTrue(
+            actual.contains(expectedMessage),
+            "Expected error [" + expectedMessage + "] but got: " + actual
+        );
     }
 
     @Then("leave status should change to {string}")
-    public void leaveStatusShouldChangeTo(String status) {
-        Assert.assertTrue(getLeavePage().isSuccessToastDisplayed(),
-            "Leave status was not updated to: " + status);
+    public void leaveStatusShouldChangeTo(String expectedStatus) {
+        String actual = getLeavePage().getLeaveStatusText();
+        Assert.assertEquals(
+            actual, expectedStatus,
+            "Leave status mismatch after action"
+        );
+    }
+
+    @Then("field validation error {string} should appear under leave type")
+    public void fieldValidationErrorShouldAppearUnderLeaveType(String expectedError) {
+        Assert.assertEquals(
+            getLeavePage().getLeaveTypeValidationError(),
+            expectedError,
+            "Leave type validation error mismatch"
+        );
+    }
+
+    @Then("leave entitlement list should be visible with leave types")
+    public void leaveEntitlementListShouldBeVisible() {
+        Assert.assertTrue(
+            getLeavePage().isLeaveListTableVisible(),
+            "Leave list table not visible"
+        );
+    }
+
+    @Then("the leave calendar should be displayed for current month")
+    public void theLeaveCalendarShouldBeDisplayed() {
+        Assert.assertTrue(
+            getLeavePage().isLeaveCalendarDisplayed(),
+            "Leave calendar not displayed"
+        );
+    }
+
+    @Then("leave duration should display {string}")
+    public void leaveDurationShouldDisplay(String expectedDuration) {
+        String actual = getLeavePage().getLeaveDurationText();
+        Assert.assertEquals(
+            actual, expectedDuration,
+            "Leave duration mismatch"
+        );
     }
 }

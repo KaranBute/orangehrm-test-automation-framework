@@ -50,3 +50,39 @@ Feature: My Info - Personal Information Management
     And user clicks Save button
     Then the name should be saved successfully without any error
 
+
+@positive @myinfo
+  Scenario: TC_MYINFO_06 - Employee can add a work experience entry under My Info
+    Given user is logged into OrangeHRM as "Employee"
+    When user navigates to My Info module
+    And user clicks on "Work Experience" tab
+    And user clicks Add button on work experience section
+    And user enters company "Infosys Ltd"
+    And user enters job title "Test Engineer"
+    And user enters work experience from year "2020" to year "2023"
+    And user clicks Save button
+    Then success toast message should be displayed
+    And work experience entry "Infosys Ltd" should be listed
+
+  # TC_MYINFO_07 - Negative: Save contact details with invalid mobile number
+  @negative @myinfo
+  Scenario: TC_MYINFO_07 - Contact details rejected when mobile number has letters
+    Given user is logged into OrangeHRM as "Employee"
+    When user navigates to My Info module
+    And user clicks on Contact Details tab
+    And user enters mobile number "ABCD123456"
+    And user clicks Save button
+    Then field validation error should appear for mobile number field
+
+  # TC_MYINFO_08 - Positive: Employee updates gender in personal details
+  @positive @myinfo
+  Scenario: TC_MYINFO_08 - Employee can select and save gender preference
+    Given user is logged into OrangeHRM as "Employee"
+    When user navigates to My Info module
+    And user clicks on Personal Details tab
+    And user selects gender "Male"
+    And user clicks Save button
+    Then success toast message should be displayed
+    And gender should be saved as "Male"
+
+

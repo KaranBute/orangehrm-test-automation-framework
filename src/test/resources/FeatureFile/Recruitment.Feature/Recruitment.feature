@@ -49,3 +49,56 @@ Feature: Recruitment - Job Vacancy and Application Management
     And user clicks Search button
     Then candidates list for "QA Engineer" should be displayed
 
+ @positive @recruitment
+  Scenario: TC_REC_06 - Admin can edit an existing vacancy
+    When user navigates to Recruitment module
+    And user searches for vacancy "QA Engineer" in vacancies list
+    And user clicks Edit on vacancy "QA Engineer"
+    And user updates number of positions to "5"
+    And user clicks Save button
+    Then success toast message should be displayed
+    And vacancy "QA Engineer" should show "5" positions
+
+  # TC_REC_07 - Negative: Add candidate without first name
+  @negative @recruitment
+  Scenario: TC_REC_07 - Candidate creation fails without first name
+    When user navigates to Recruitment module
+    And user opens vacancy "QA Engineer"
+    And user clicks "Add" in candidates section
+    And user leaves candidate first name blank
+    And user enters candidate last name "Smith"
+    And user enters candidate email "smith@test.com"
+    And user clicks Save button
+    Then field validation error "Required" should appear under first name
+
+  # TC_REC_08 - Boundary: Vacancy name at exactly 100 character limit
+  @boundary @recruitment
+  Scenario: TC_REC_08 - Vacancy name with exactly 100 characters is accepted
+    When user navigates to Recruitment module
+    And user clicks on "Add" button in Vacancies section
+    And user enters vacancy name "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    And user selects job title "Software Engineer"
+    And user clicks Save button
+    Then success toast message should be displayed
+
+  # TC_REC_09 - Positive: Admin can shortlist a candidate
+  @positive @recruitment
+  Scenario: TC_REC_09 - Admin can shortlist a candidate application
+    When user navigates to Recruitment module
+    And user searches for candidate "Alice Walker" by vacancy "QA Engineer"
+    And user opens candidate profile for "Alice Walker"
+    And user clicks "Shortlist" action button
+    And user enters shortlisting note "Strong technical profile"
+    And user confirms the action
+    Then candidate status should change to "Shortlisted"
+
+  # TC_REC_10 - Positive: Admin can reject a candidate application
+  @positive @recruitment
+  Scenario: TC_REC_10 - Admin can reject a candidate application with a note
+    When user navigates to Recruitment module
+    And user searches for candidate "Alice Walker" by vacancy "QA Engineer"
+    And user opens candidate profile for "Alice Walker"
+    And user clicks "Reject" action button
+    And user enters rejection note "Does not meet experience requirement"
+    And user confirms the action
+    Then candidate status should change to "Rejected"

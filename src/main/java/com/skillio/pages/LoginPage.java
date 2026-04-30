@@ -1,10 +1,11 @@
 package com.skillio.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import com.skillio.base.Keyword;
+import com.skillio.locators.LoginLocator;
 import com.skillio.utils.WaitFor;
 
 public class LoginPage {
@@ -13,40 +14,31 @@ public class LoginPage {
         PageFactory.initElements(Keyword.getDriver(), this);
     }
 
-    // ================= LOCATORS =================
     @FindBy(name = "username")
-    private WebElement userNameTxtBx;
+    private WebElement userNameField;
 
     @FindBy(name = "password")
-    private WebElement passwordTxtBx;
+    private WebElement passwordField;
 
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement signInBtn;
 
     @FindBy(css = "p.oxd-alert-content-text")
-    private WebElement loginError;
+    private WebElement loginErrorMsg;
 
-    @FindBy(xpath = "//h6")
+    @FindBy(xpath = "//h6[normalize-space()='Dashboard']")
     private WebElement dashboardHeader;
 
-    @FindBy(xpath = "//input[@name='username']/ancestor::div[1]//span")
-    private WebElement usernameError;
-
-    @FindBy(xpath = "//input[@name='password']/ancestor::div[1]//span")
-    private WebElement passwordError;
-
-    // ================= ACTIONS =================
-
     public void enterUserName(String userName) {
-        WaitFor.elementToBeVisible(userNameTxtBx);
-        userNameTxtBx.clear();
-        userNameTxtBx.sendKeys(userName);
+        WaitFor.elementToBeVisible(userNameField);
+        userNameField.clear();
+        userNameField.sendKeys(userName);
     }
 
     public void enterPassword(String password) {
-        WaitFor.elementToBeVisible(passwordTxtBx);
-        passwordTxtBx.clear();
-        passwordTxtBx.sendKeys(password);
+        WaitFor.elementToBeVisible(passwordField);
+        passwordField.clear();
+        passwordField.sendKeys(password);
     }
 
     public void clickSignInBtn() {
@@ -60,25 +52,23 @@ public class LoginPage {
         clickSignInBtn();
     }
 
-    // ================= VALIDATIONS =================
-
     public String getLoginErrorMessage() {
-        WaitFor.elementToBeVisible(loginError);
-        return loginError.getText();
+        WaitFor.elementToBeVisible(By.cssSelector("p.oxd-alert-content-text"));
+        return loginErrorMsg.getText().trim();
     }
 
     public String getDashboardHeaderText() {
-        WaitFor.elementToBeVisible(dashboardHeader);
-        return dashboardHeader.getText();
+        WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
+        return dashboardHeader.getText().trim();
     }
 
     public String getUsernameFieldError() {
-        WaitFor.elementToBeVisible(usernameError);
-        return usernameError.getText();
+        WaitFor.elementToBeVisible(By.xpath(LoginLocator.USERNAME_ERROR));
+        return Keyword.getDriver().findElement(By.xpath(LoginLocator.USERNAME_ERROR)).getText().trim();
     }
 
     public String getPasswordFieldError() {
-        WaitFor.elementToBeVisible(passwordError);
-        return passwordError.getText();
+        WaitFor.elementToBeVisible(By.xpath(LoginLocator.PASSWORD_ERROR));
+        return Keyword.getDriver().findElement(By.xpath(LoginLocator.PASSWORD_ERROR)).getText().trim();
     }
 }
