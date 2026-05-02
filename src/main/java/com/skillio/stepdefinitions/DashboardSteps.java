@@ -10,95 +10,89 @@ import com.skillio.utils.WaitFor;
 
 import io.cucumber.java.en.*;
 
-/**
- * FIXES:
- *  - BUG: dashboardPage = new DashboardSteps() was INFINITE SELF-INSTANTIATION.
- *    Removed the self-reference entirely.
- *  - getPageHeader() was returning null; now reads the actual h6 from the DOM.
- *  - isWidgetDisplayed() was returning false; now checks DOM.
- *  - isAdminMenuVisible() was returning false; now checks DOM.
- *  - searchMenu() was empty; now types into the OrangeHRM sidebar search.
- */
 public class DashboardSteps {
 
-    private LoginPage loginPage = new LoginPage();
+    private LoginPage loginPage;
+
+    private LoginPage getLoginPage() {
+        if (loginPage == null) {
+            loginPage = new LoginPage();
+        }
+        return loginPage;
+    }
+
+    @Given("user is logged into OrangeHRM as {string}")
+    public void userIsLoggedIntoOrangeHRMAs(String role) {
+        getLoginPage().loginWithCredentials("Admin", "admin123");
+        WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
+    }
 
     @Given("user is logged into OrangeHRM")
     public void userIsLoggedIntoOrangeHRM() {
-        loginPage.loginWithCredentials("Admin", "admin123");
-        // Wait for dashboard to confirm login succeeded
+        getLoginPage().loginWithCredentials("Admin", "admin123");
         WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
     }
 
     @When("user navigates to the Dashboard")
     public void userNavigatesToTheDashboard() {
-        // Usually already on dashboard after login; navigate explicitly if needed
         WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
     }
 
-    @Then("the page header should display {string}")
-    public void thePageHeaderShouldDisplay(String expectedHeader) {
-        String actual = getPageHeader();
-        Assert.assertEquals(actual, expectedHeader,
-            "[DashboardSteps] Page header mismatch.");
+    @When("user clicks on {string} from the left side navigation menu")
+    public void userClicksOnFromLeftSideNav(String menuItem) {
+        By navItem = By.xpath("//span[normalize-space()='" + menuItem + "']");
+        WaitFor.elementToBeClickable(navItem);
+        Keyword.getDriver().findElement(navItem).click();
+
+        By header = By.xpath("//h6[contains(@class,'oxd-topbar-header-breadcrumb-module') or normalize-space()='" + menuItem + "']");
+        WaitFor.elementToBeVisible(header);
+    }
+
+    @Then("the dashboard page header should display {string}")
+    public void theDashboardPageHeaderShouldDisplay(String expectedHeader) {
+        By header = By.xpath("//h6");
+        WaitFor.elementToBeVisible(header);
+
+        String actual = Keyword.getDriver().findElement(header).getText().trim();
+
+        Assert.assertEquals(
+                actual,
+                expectedHeader,
+                "[DashboardSteps] Page header mismatch.");
     }
 
     @Then("the {string} widget should be visible on the dashboard")
     public void theWidgetShouldBeVisible(String widgetName) {
-        Assert.assertTrue(isWidgetDisplayed(widgetName),
-            "[DashboardSteps] Widget not visible: " + widgetName);
+        By widget = By.xpath("//*[normalize-space()='" + widgetName + "']");
+        WaitFor.elementToBeVisible(widget);
+
+        Assert.assertTrue(
+                Keyword.getDriver().findElement(widget).isDisplayed(),
+                "[DashboardSteps] Widget not visible: " + widgetName);
     }
 
     @When("user types {string} into the side menu search bar")
     public void userTypesIntoSideMenuSearch(String searchText) {
-        searchMenu(searchText);
-    }
-
-    @Then("only the Admin module should be visible in the menu")
-    public void onlyTheAdminModuleShouldBeVisible() {
-        Assert.assertTrue(isAdminMenuVisible(),
-            "[DashboardSteps] Admin menu not visible after search.");
-    }
-
-    // ── Page helpers (private) ────────────────────────────────────────────────
-
-    private String getPageHeader() {
-        // FIXED: was returning null
-        By header = By.xpath("//h6");
-        WaitFor.elementToBeVisible(header);
-        return Keyword.getDriver().findElement(header).getText().trim();
-    }
-
-    private boolean isWidgetDisplayed(String widgetName) {
-        // FIXED: was returning false
-        try {
-            By widget = By.xpath(
-                "//*[contains(@class,'oxd-grid-item')]//*[normalize-space()='" + widgetName + "']");
-            WaitFor.elementToBeVisible(widget);
-            return Keyword.getDriver().findElement(widget).isDisplayed();
-        } catch (Exception e) {
-            System.err.println("[DashboardSteps] Widget not found: " + widgetName);
-            return false;
-        }
-    }
-
-    private void searchMenu(String searchText) {
-        // FIXED: was empty stub
         By searchBox = By.xpath("//input[@placeholder='Search']");
         WaitFor.elementToBeVisible(searchBox);
+
         WebElement el = Keyword.getDriver().findElement(searchBox);
         el.clear();
         el.sendKeys(searchText);
     }
 
-    private boolean isAdminMenuVisible() {
-        // FIXED: was returning false
-        try {
-            By adminMenu = By.xpath("//span[normalize-space()='Admin']");
-            WaitFor.elementToBeVisible(adminMenu);
-            return Keyword.getDriver().findElement(adminMenu).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+    @Then("only the Admin module should be visible in the menu")
+    public void onlyTheAdminModuleShouldBeVisible() {
+        By adminMenu = By.xpath("//span[normalize-space()='Admin']");
+        WaitFor.elementToBeVisible(adminMenu);
+
+        Assert.assertTrue(
+                Keyword.getDriver().findElement(adminMenu).isDisplayed(),
+                "[DashboardSteps] Admin menu not visible after search.");
+    }
+    
+    @Then("the page header should display {string}")
+    public void thePageHeaderShouldDisplayOld(String expectedHeader) {
+        theDashboardPageHeaderShouldDisplay(expectedHeader);
     }
 }

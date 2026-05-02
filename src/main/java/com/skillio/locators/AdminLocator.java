@@ -3,8 +3,7 @@ package com.skillio.locators;
 /**
  * AdminLocator — locators for Admin → User Management → Users.
  */
-public class AdminLocator {
-    private AdminLocator() {}
+public interface AdminLocator {
 
     public static final String ADMIN_MENU             = "//span[normalize-space()='Admin']";
     public static final String ADD_BUTTON             = "//button[normalize-space()='Add']";

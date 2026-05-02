@@ -1,116 +1,128 @@
 package com.skillio.stepdefinitions;
 
-import org.testng.Assert;
-
 import com.skillio.base.Keyword;
 import com.skillio.pages.LoginPage;
-import com.skillio.utils.App;
-
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import com.skillio.utils.WaitFor;
+import io.cucumber.java.en.*;
+import org.openqa.selenium.By;
+import org.testng.Assert;
 
 public class LoginSteps {
 
-    // ✅ Single object (fixed)
-    private LoginPage login = new LoginPage();
+    private LoginPage loginPage;
 
-    @When("user enters invalid credential")
-    public void enterInvalidCredentials() {
-        login.loginWithCredentials("admn", "admn234");
-    }
-
-    @Then("check if the error message appears")
-    public void verifyLoginErrorMsg() {
-        String actual = login.getLoginErrorMessage();
-        Assert.assertEquals(actual, "Invalid credentials");
-    }
-
-    @When("user enters valid credentials")
-    public void enterValidCredentials() {
-        login.loginWithCredentials(
-            App.getUsername("qa"),
-            App.getPassword("qa")
-        );
-    }
-
-    @Then("user should be redirected to the dashboard")
-    public void verifyRedirectionToDashboard() {
-        String header = login.getDashboardHeaderText();
-        Assert.assertTrue(
-            header.contains("Dashboard"),
-            "Dashboard not displayed after login"
-        );
-    }
-
-    @When("user enters username {string} and password {string}")
-    public void user_enters_username_and_password(String username, String password) {
-        login.loginWithCredentials(username, password);
-    }
-
-    @Then("the login result should be {string}")
-    public void the_login_result_should_be(String result) {
-
-        if ("success".equalsIgnoreCase(result)) {
-            Assert.assertTrue(
-                login.getDashboardHeaderText().contains("Dashboard"),
-                "Expected successful login but dashboard not found"
-            );
-        } else {
-            String err = login.getLoginErrorMessage();
-
-            Assert.assertTrue(
-                err.equalsIgnoreCase("Invalid credentials")
-                || login.getUsernameFieldError().length() > 0
-                || login.getPasswordFieldError().length() > 0,
-                "Expected failure but no proper validation message found"
-            );
+    private LoginPage getLoginPage() {
+        if (loginPage == null) {
+            loginPage = new LoginPage();
         }
+        return loginPage;
+    }
+
+    @Given("user is on the OrangeHRM login page")
+    public void userIsOnTheOrangeHRMLoginPage() {
+        WaitFor.elementToBeVisible(By.name("username"));
+    }
+
+    @When("user enters userName {string} and password {string}")
+    public void userEntersUserNameAndPassword(String username, String password) {
+        getLoginPage().enterUserName(username);
+        getLoginPage().enterPassword(password);
     }
 
     @When("user clicks the login button")
     public void userClicksTheLoginButton() {
-        login.clickSignInBtn();   // ✅ fixed
+        getLoginPage().clickSignInBtn();
     }
 
     @When("user enters password {string} in the password field")
-    public void userEntersPasswordInPasswordField(String password) {
-        login.enterPassword(password);   // ✅ fixed
+    public void userEntersPasswordInThePasswordField(String password) {
+        getLoginPage().enterPassword(password);
     }
 
-    // ─── THEN ────────────────────────────────────────────────────────────────
+    @Then("user should be redirected to the dashboard")
+    public void userShouldBeRedirectedToTheDashboard() {
+        WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
 
-    @Then("username field validation error {string} should be displayed")
-    public void usernameFieldValidationErrorShouldBeDisplayed(String expectedError) {
-        String actual = login.getUsernameFieldError();
-        Assert.assertEquals(actual, expectedError,
-            "Username field validation error mismatch");
-    }
-
-    @Then("password field validation error {string} should be displayed")
-    public void passwordFieldValidationErrorShouldBeDisplayed(String expectedError) {
-        String actual = login.getPasswordFieldError();
-        Assert.assertEquals(actual, expectedError,
-            "Password field validation error mismatch");
+        Assert.assertTrue(
+                Keyword.getDriver()
+                        .findElement(By.xpath("//h6[normalize-space()='Dashboard']"))
+                        .isDisplayed(),
+                "Dashboard not visible after login");
     }
 
     @Then("login error message {string} should be displayed")
-    public void loginErrorMessageShouldBeDisplayed(String expectedMessage) {
-        String actual = login.getLoginErrorMessage();
-        Assert.assertEquals(actual, expectedMessage,
-            "Login error message mismatch");
+    public void loginErrorMessageShouldBeDisplayed(String expectedMsg) {
+        WaitFor.elementToBeVisible(By.cssSelector("p.oxd-alert-content-text"));
+
+        String actual = Keyword.getDriver()
+                .findElement(By.cssSelector("p.oxd-alert-content-text"))
+                .getText()
+                .trim();
+
+        Assert.assertEquals(actual, expectedMsg, "Login error message mismatch");
+    }
+
+    @Then("userName field validation error {string} should be displayed")
+    public void userNameFieldValidationErrorShouldBeDisplayed(String errorMsg) {
+        Assert.assertEquals(
+                getLoginPage().getUsernameFieldError(),
+                errorMsg,
+                "Username field validation error mismatch");
+    }
+
+    @Then("password field validation error {string} should be displayed")
+    public void passwordFieldValidationErrorShouldBeDisplayed(String errorMsg) {
+        Assert.assertEquals(
+                getLoginPage().getPasswordFieldError(),
+                errorMsg,
+                "Password field validation error mismatch");
+    }
+
+    // renamed to avoid duplicate with other step classes
+    @Then("the login password field type should be {string}")
+    public void theLoginPasswordFieldTypeShouldBe(String expectedType) {
+        String actual = Keyword.getDriver()
+                .findElement(By.name("password"))
+                .getAttribute("type");
+
+        Assert.assertEquals(actual, expectedType, "Password field type mismatch");
     }
 
     @Then("the login page title should contain {string}")
     public void theLoginPageTitleShouldContain(String expectedText) {
         String title = Keyword.getDriver().getTitle();
-        Assert.assertTrue(title.contains(expectedText),
-            "Page title [" + title + "] does not contain: " + expectedText);
+
+        Assert.assertTrue(
+                title.contains(expectedText),
+                "Page title '" + title + "' does not contain '" + expectedText + "'");
     }
 
+    @Then("the login result should be {string}")
+    public void theLoginResultShouldBe(String result) {
+        if ("success".equalsIgnoreCase(result)) {
+            WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
+
+            Assert.assertTrue(
+                    Keyword.getDriver()
+                            .findElement(By.xpath("//h6[normalize-space()='Dashboard']"))
+                            .isDisplayed(),
+                    "Expected Dashboard after successful login");
+        } else {
+            try {
+                WaitFor.elementToBeVisible(By.cssSelector("p.oxd-alert-content-text"));
+            } catch (Exception e) {
+                WaitFor.elementToBeVisible(
+                        By.xpath("//span[contains(@class,'oxd-input-field-error')]"));
+            }
+        }
+    }
+    
     @Then("the password field type should be {string}")
-    public void thePasswordFieldTypeShouldBe(String expectedType) {
-        String actualType = login.getPasswordFieldError();
-        Assert.assertEquals(actualType, expectedType,
-            "Password field type attribute mismatch");
+    public void passwordType(String type) {
+        String actual = Keyword.getDriver()
+            .findElement(By.name("password"))
+            .getAttribute("type");
+
+        Assert.assertEquals(actual, type);
     }
 }

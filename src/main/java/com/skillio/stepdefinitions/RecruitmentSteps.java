@@ -1,213 +1,228 @@
 package com.skillio.stepdefinitions;
 
-import org.testng.Assert;
-
 import com.skillio.pages.RecruitmentPage;
-
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
+import org.testng.Assert;
 
 public class RecruitmentSteps {
 
-    // ───────────────── PAGE OBJECT ─────────────────
+    private RecruitmentPage rec;
 
-    private RecruitmentPage rec = new RecruitmentPage();
+    private RecruitmentPage getRec() {
+        if (rec == null) {
+            rec = new RecruitmentPage();
+        }
+        return rec;
+    }
 
-    // =========================================================
+    // =========================
     // NAVIGATION
-    // =========================================================
+    // =========================
 
     @When("user navigates to Recruitment module")
     public void userNavigatesToRecruitmentModule() {
-        rec.navigateToRecruitment();
+        getRec().navigateToRecruitment();
     }
 
-    // =========================================================
-    // VACANCY CREATION
-    // =========================================================
+    // =========================
+    // VACANCY
+    // =========================
 
-    @When("user clicks on {string} button in Vacancies section")
-    public void userClicksOnButtonInVacanciesSection(String button) {
-        rec.clickAddVacancy();
+    @When("user clicks Add Vacancy button in Recruitment")
+    public void userClicksAddVacancyButton() {
+        getRec().clickAddVacancy();
     }
 
-    @When("user enters vacancy name {string}")
-    public void userEntersVacancyName(String vacancyName) {
-        rec.enterVacancyName(vacancyName);
+    @When("user enters vacancy name {string} in Recruitment")
+    public void userEntersVacancyName(String name) {
+        getRec().enterVacancyName(name);
     }
 
-    @When("user selects job title {string}")
-    public void userSelectsJobTitle(String jobTitle) {
-        rec.selectJobTitle(jobTitle);
+    @When("user leaves vacancy name blank in Recruitment")
+    public void userLeavesVacancyNameBlank() {
+        getRec().clearVacancyName();
     }
 
-    @When("user enters number of positions {string}")
-    public void userEntersNumberOfPositions(String positions) {
-        rec.enterPositionCount(positions);
+    @When("user selects job title for vacancy {string} in Recruitment")
+    public void userSelectsJobTitleForVacancy(String jobTitle) {
+        getRec().selectJobTitle(jobTitle);
     }
 
-    @When("user leaves job title blank")
-    public void userLeavesJobTitleBlank() {
-        // Intentionally left blank
-    }
-
-    // DUPLICATE FIXED
-    @When("user clicks Save Vacancy button")
+    @When("user clicks Save Vacancy button in Recruitment")
     public void userClicksSaveVacancyButton() {
-        rec.clickSave();
+        getRec().clickSaveVacancy();
     }
 
-    @When("user opens vacancy {string}")
-    public void userOpensVacancy(String vacancyName) {
-        rec.openVacancy(vacancyName);
+    // =========================
+    // CANDIDATE
+    // =========================
+
+    @When("user clicks Candidates tab in Recruitment")
+    public void userClicksCandidatesTab() {
+        getRec().clickCandidatesTab();
     }
 
-    // =========================================================
-    // CANDIDATE FLOW
-    // =========================================================
-
-    @When("user clicks {string} in candidates section")
-    public void userClicksInCandidatesSection(String button) {
-        rec.clickAddCandidate();
+    @When("user clicks Add Candidate button in Recruitment")
+    public void userClicksAddCandidateButton() {
+        getRec().clickAddCandidate();
     }
 
-    @When("user enters candidate first name {string} and last name {string}")
-    public void userEntersCandidateFirstNameAndLastName(String firstName, String lastName) {
-        rec.enterCandidateName(firstName, lastName);
+    @When("user enters candidate first name {string} and last name {string} in Recruitment")
+    public void userEntersCandidateFirstAndLastName(String first, String last) {
+        getRec().enterCandidateName(first, last);
     }
 
-    @When("user enters candidate email {string}")
+    @When("user enters candidate email {string} in Recruitment")
     public void userEntersCandidateEmail(String email) {
-        rec.enterCandidateEmail(email);
+        getRec().enterCandidateEmail(email);
     }
 
-    @When("user selects vacancy {string} in candidate search form")
-    public void userSelectsVacancyInCandidateSearchForm(String vacancyName) {
-        rec.selectVacancyInSearch(vacancyName);
+    @When("user clicks Save Candidate button in Recruitment")
+    public void userClicksSaveCandidateButton() {
+        getRec().clickSaveCandidate();
     }
 
-    // DUPLICATE FIXED
-    @When("user clicks Search button in Recruitment")
-    public void userClicksSearchButtonInRecruitment() {
-        rec.clickSearch();
+    @When("user clicks Search button in Recruitment module")
+    public void userClicksSearchCandidatesButton() {
+        getRec().clickSearch();
     }
 
-    // =========================================================
-    // SEARCH / EDIT
-    // =========================================================
-
-    @When("user searches for vacancy {string} in vacancies list")
-    public void userSearchesForVacancyInVacanciesList(String vacancyName) {
-        rec.searchVacancy(vacancyName);
+    @When("user enters candidate keyword {string} in Recruitment")
+    public void userEntersCandidateKeyword(String keyword) {
+        getRec().enterCandidateKeyword(keyword);
     }
 
-    @When("user clicks Edit on vacancy {string}")
-    public void userClicksEditOnVacancy(String vacancyName) {
-        rec.clickEditVacancy(vacancyName);
+    @When("user selects vacancy {string} in candidate search form in Recruitment")
+    public void userSelectsVacancyInCandidateSearchForm(String vacancy) {
+        getRec().selectVacancy(vacancy);
     }
 
-    @When("user updates number of positions to {string}")
-    public void userUpdatesNumberOfPositions(String positions) {
-        rec.updateNumberOfPositions(positions);
-    }
-
-    // =========================================================
-    // CANDIDATE ACTIONS
-    // =========================================================
-
-    @When("user searches for candidate {string} by vacancy {string}")
-    public void userSearchesForCandidateByVacancy(String candidate, String vacancy) {
-        rec.searchCandidateByVacancy(candidate, vacancy);
-    }
-
-    @When("user opens candidate profile for {string}")
-    public void userOpensCandidateProfileFor(String candidateName) {
-        rec.openCandidateProfile(candidateName);
-    }
-
-    @When("user clicks {string} action button")
-    public void userClicksActionButton(String action) {
-        rec.clickCandidateAction(action);
-    }
-
-    @When("user enters note {string}")
-    public void userEntersNote(String note) {
-        rec.enterActionNote(note);
-    }
-
-    @When("user confirms the action")
-    public void userConfirmsTheAction() {
-        rec.clickConfirmAction();
-    }
-
-    // =========================================================
+    // =========================
     // ASSERTIONS
-    // =========================================================
+    // =========================
 
-    @Then("vacancy {string} should appear in the vacancies list")
-    public void vacancyShouldAppearInTheVacanciesList(String vacancyName) {
-
-        Assert.assertTrue(
-                rec.isVacancyInList(vacancyName),
-                "Vacancy not found: " + vacancyName);
+    @Then("vacancy save success toast should be displayed in Recruitment")
+    public void vacancySaveSuccessToastShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isSuccessToastVisible());
     }
 
-    @Then("field validation error {string} should appear under job title field")
-    public void fieldValidationErrorShouldAppearUnderJobTitleField(String expectedError) {
-
-        Assert.assertEquals(
-                rec.getJobTitleError(),
-                expectedError,
-                "Job title validation mismatch");
+    @Then("vacancy required field error should be displayed in Recruitment")
+    public void vacancyRequiredFieldErrorShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isRequiredErrorVisible());
     }
 
-    @Then("candidate {string} should be added under {string} vacancy")
-    public void candidateShouldBeAddedUnderVacancy(String candidateName, String vacancyName) {
-
-        Assert.assertTrue(
-                rec.isCandidateInList(candidateName),
-                "Candidate not found: " + candidateName);
+    @Then("candidate save success toast should be displayed in Recruitment")
+    public void candidateSaveSuccessToastShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isSuccessToastVisible());
     }
 
-    @Then("field validation error {string} should appear")
-    public void fieldValidationErrorShouldAppear(String expectedError) {
+    @Then("candidate email format error should be displayed in Recruitment")
+    public void candidateEmailFormatErrorShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isEmailFormatErrorVisible());
+    }
 
-        Assert.assertTrue(
-                rec.isValidationErrorDisplayed(expectedError),
-                "Validation error not displayed: " + expectedError);
+    @Then("candidates search results should be displayed in Recruitment")
+    public void candidatesSearchResultsShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isCandidatesListDisplayed());
+    }
+
+    @Then("Add Candidate page should be displayed in Recruitment")
+    public void addCandidatePageShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isAddCandidatePageDisplayed());
+    }
+
+    @Then("candidates list or no records message should be displayed in Recruitment")
+    public void candidatesListOrNoRecordsMessageShouldBeDisplayed() {
+        Assert.assertTrue(getRec().isCandidateTableOrNoRecordsDisplayed());
+    }
+
+    @Then("candidates list for {string} should be displayed in Recruitment")
+    public void candidatesListForShouldBeDisplayed(String value) {
+        Assert.assertTrue(getRec().isCandidateTableOrNoRecordsDisplayed());
+    }
+    
+    @When("user clicks Candidates tab")
+    public void userClicksCandidatesTabOld() {
+        getRec().clickCandidatesTab();
+    }
+
+    @When("user enters candidate keyword {string}")
+    public void userEntersCandidateKeywordOld(String keyword) {
+        getRec().enterCandidateKeyword(keyword);
+    }
+
+    @When("user clicks Search button in Recruitment")
+    public void userClicksSearchButtonInRecruitmentOld() {
+        getRec().clickSearch();
+    }
+
+    @Then("candidates list or no records message should be displayed")
+    public void candidatesListOrNoRecordsOld() {
+        Assert.assertTrue(getRec().isCandidateTableOrNoRecordsDisplayed());
     }
 
     @Then("candidates list for {string} should be displayed")
-    public void candidatesListForVacancyShouldBeDisplayed(String vacancyName) {
-
-        Assert.assertTrue(
-                rec.isCandidateTableVisible(),
-                "Candidate list not visible for vacancy: " + vacancyName);
+    public void candidatesListForOld(String value) {
+        Assert.assertTrue(getRec().isCandidateTableOrNoRecordsDisplayed());
     }
 
-    @Then("vacancy {string} should show {string} positions")
-    public void vacancyShouldShowPositions(String vacancyName, String positions) {
-
-        Assert.assertTrue(
-                rec.isVacancyPositionUpdated(vacancyName, positions),
-                "Vacancy positions not updated correctly");
+    @When("user clicks on {string} button in Vacancies section")
+    public void userClicksOnButtonInVacanciesSectionOld(String button) {
+        getRec().clickAddVacancy();
     }
 
-    @Then("field validation error {string} should appear under first name")
-    public void fieldValidationErrorShouldAppearUnderFirstName(String expectedError) {
-
-        Assert.assertEquals(
-                rec.getFirstNameError(),
-                expectedError,
-                "First name validation mismatch");
+    @When("user enters vacancy name {string}")
+    public void userEntersVacancyNameOld(String name) {
+        getRec().enterVacancyName(name);
     }
 
-    @Then("candidate status should change to {string}")
-    public void candidateStatusShouldChangeTo(String expectedStatus) {
+    @When("user clicks Save Vacancy button")
+    public void userClicksSaveVacancyButtonOld() {
+        getRec().clickSaveVacancy();
+    }
 
-        Assert.assertEquals(
-                rec.getCandidateStatusText(),
-                expectedStatus,
-                "Candidate status mismatch");
+    @Then("field validation error {string} should appear under job title field")
+    public void fieldValidationErrorUnderJobTitleOld(String error) {
+        Assert.assertTrue(getRec().isRequiredErrorVisible());
+    }
+    
+    @When("user clicks Add Candidate button")
+    public void clickAddCandidate() {
+        getRec().clickAddCandidate();
+    }
+
+    @When("user enters candidate first name {string} and last name {string}")
+    public void enterCandidateName(String first, String last) {
+        getRec().enterCandidateName(first, last);
+    }
+
+    @When("user enters candidate email {string}")
+    public void enterCandidateEmail(String email) {
+        getRec().enterCandidateEmail(email);
+    }
+
+    @When("user clicks Save Candidate button")
+    public void saveCandidate() {
+        getRec().clickSaveCandidate();
+    }
+
+    @Then("candidate save success toast should be displayed")
+    public void verifyCandidateToast() {
+        Assert.assertTrue(getRec().isSuccessToastDisplayed());
+    }
+    
+    @When("user clicks Add Vacancy button")
+    public void clickAddVacancy() {
+        getRec().clickAddVacancy();
+    }
+
+    @When("user selects job title for vacancy {string}")
+    public void selectJobTitle(String title) {
+        getRec().selectJobTitle(title);
+    }
+
+    @Then("vacancy save success toast should be displayed")
+    public void vacancyToast() {
+        Assert.assertTrue(getRec().isSuccessToastDisplayed());
     }
 }

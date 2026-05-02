@@ -1,148 +1,197 @@
 package com.skillio.pages;
 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.skillio.base.Keyword;
 import com.skillio.locators.RecruitmentLocator;
 import com.skillio.utils.WaitFor;
 
-/**
- * RecruitmentPage — fully implemented.
- * FIXES: enterCandidateName, selectJobTitle, enterPositionCount were empty stubs.
- * All stubs are now implemented with proper locators and waits.
- */
 public class RecruitmentPage {
 
     public RecruitmentPage() {
         PageFactory.initElements(Keyword.getDriver(), this);
     }
 
-    @FindBy(xpath = "//span[normalize-space()='Recruitment']")
+    @FindBy(xpath = RecruitmentLocator.RECRUITMENT_MENU)
     private WebElement recruitmentMenu;
 
-    @FindBy(xpath = "//button[normalize-space()='Add']")
-    private WebElement addBtn;
+    @FindBy(xpath = RecruitmentLocator.ADD_BUTTON)
+    private WebElement addButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Save']")
-    private WebElement saveBtn;
+    @FindBy(xpath = RecruitmentLocator.SAVE_BUTTON)
+    private WebElement saveButton;
 
-    @FindBy(css = ".oxd-toast-content-text")
-    private WebElement successToast;
+    private final By candidatesTab = By.xpath("//a[normalize-space()='Candidates']");
+    private final By vacanciesTab = By.xpath("//a[normalize-space()='Vacancies']");
+    private final By searchButton = By.xpath("//button[normalize-space()='Search']");
 
-    // ── Navigation ────────────────────────────────────────────────────────────
     public void navigateToRecruitment() {
-        WaitFor.elementToBeClickable(recruitmentMenu);
-        recruitmentMenu.click();
-        WaitFor.elementToBeVisible(By.xpath("//h5[normalize-space()='Vacancies']"));
+        WaitFor.click(recruitmentMenu);
+        WaitFor.elementToBeVisible(By.xpath("//a[normalize-space()='Candidates'] | //h6[contains(normalize-space(),'Recruitment')]") );
     }
 
-    // ── Vacancy form ──────────────────────────────────────────────────────────
     public void clickAddVacancy() {
-        WaitFor.elementToBeClickable(addBtn);
-        addBtn.click();
+        try { WaitFor.click(vacanciesTab); } catch (Exception ignored) {}
+        WaitFor.click(By.xpath(RecruitmentLocator.ADD_BUTTON));
+        WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.VACANCY_NAME_INPUT));
     }
 
     public void enterVacancyName(String name) {
-        By field = By.xpath(RecruitmentLocator.VACANCY_NAME_INPUT);
-        WaitFor.elementToBeVisible(field);
-        WebElement el = Keyword.getDriver().findElement(field);
-        el.clear();
-        el.sendKeys(name);
+        WaitFor.type(By.xpath(RecruitmentLocator.VACANCY_NAME_INPUT), name);
     }
 
-    /**
-     * FIX: was empty stub. Selects job title from the custom Vue dropdown.
-     */
-    public void selectJobTitle(String title) {
-        By dropdown = By.xpath(RecruitmentLocator.JOB_TITLE_DROPDOWN);
-        WaitFor.elementToBeClickable(dropdown);
-        Keyword.getDriver().findElement(dropdown).click();
-        By option = By.xpath(String.format(RecruitmentLocator.LISTBOX_OPTION, title));
-        WaitFor.elementToBeClickable(option);
-        Keyword.getDriver().findElement(option).click();
+    public void clearVacancyName() {
+        WaitFor.type(By.xpath(RecruitmentLocator.VACANCY_NAME_INPUT), "");
     }
 
-    /**
-     * FIX: was empty stub. Enters number of positions.
-     */
+    public void selectJobTitle(String jobTitle) {
+        WaitFor.click(By.xpath(RecruitmentLocator.JOB_TITLE_DROPDOWN));
+        WaitFor.click(By.xpath(String.format(RecruitmentLocator.LISTBOX_OPTION, jobTitle)));
+    }
+
     public void enterPositionCount(String count) {
-        By field = By.xpath(RecruitmentLocator.POSITIONS_INPUT);
-        WaitFor.elementToBeVisible(field);
-        WebElement el = Keyword.getDriver().findElement(field);
-        el.clear();
-        el.sendKeys(count);
+        WaitFor.type(By.xpath(RecruitmentLocator.POSITIONS_INPUT), count);
     }
 
-    /**
-     * FIX: was empty stub. Clicks the vacancy row in the list to open it.
-     */
-    public void openVacancy(String name) {
-        By row = By.xpath(
-            "//div[contains(@class,'oxd-table-body')]//div[normalize-space()='" + name + "']");
-        WaitFor.elementToBeClickable(row);
-        Keyword.getDriver().findElement(row).click();
+    public void clickSaveVacancy() {
+        WaitFor.click(saveButton);
     }
 
-    // ── Candidate form ────────────────────────────────────────────────────────
+    public void clickCandidatesTab() {
+        WaitFor.click(candidatesTab);
+        WaitFor.elementToBeVisible(By.xpath("//h6[contains(normalize-space(),'Candidates')] | //button[normalize-space()='Add']"));
+    }
+
     public void clickAddCandidate() {
-        WaitFor.elementToBeClickable(addBtn);
-        addBtn.click();
+        WaitFor.click(By.xpath(RecruitmentLocator.ADD_BUTTON));
+        WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.FIRST_NAME_INPUT));
     }
 
-    /**
-     * FIX: was empty stub. Fills first and last name fields.
-     */
-    public void enterCandidateName(String first, String last) {
-        By firstNameBy = By.xpath(RecruitmentLocator.FIRST_NAME_INPUT);
-        By lastNameBy  = By.xpath(RecruitmentLocator.LAST_NAME_INPUT);
-        WaitFor.elementToBeVisible(firstNameBy);
-        WebElement fn = Keyword.getDriver().findElement(firstNameBy);
-        fn.clear(); fn.sendKeys(first);
-        WebElement ln = Keyword.getDriver().findElement(lastNameBy);
-        ln.clear(); ln.sendKeys(last);
+    public void enterCandidateName(String firstName, String lastName) {
+        WaitFor.type(By.xpath(RecruitmentLocator.FIRST_NAME_INPUT), firstName);
+        WaitFor.type(By.xpath(RecruitmentLocator.LAST_NAME_INPUT), lastName);
     }
 
     public void enterCandidateEmail(String email) {
-        By emailBy = By.xpath(RecruitmentLocator.EMAIL_INPUT);
-        WaitFor.elementToBeVisible(emailBy);
-        WebElement el = Keyword.getDriver().findElement(emailBy);
-        el.clear();
-        el.sendKeys(email);
+        WaitFor.type(By.xpath(RecruitmentLocator.EMAIL_INPUT), email);
     }
 
-    public void selectVacancyInSearch(String name) {
-        By dropdown = By.xpath(RecruitmentLocator.VACANCY_DROPDOWN);
-        WaitFor.elementToBeClickable(dropdown);
-        Keyword.getDriver().findElement(dropdown).click();
-        By option = By.xpath(String.format(RecruitmentLocator.LISTBOX_OPTION, name));
-        WaitFor.elementToBeClickable(option);
-        Keyword.getDriver().findElement(option).click();
+    public void selectVacancy(String vacancy) {
+        WaitFor.click(By.xpath(RecruitmentLocator.VACANCY_DROPDOWN));
+        WaitFor.click(By.xpath(String.format(RecruitmentLocator.LISTBOX_OPTION, vacancy)));
     }
 
-    public void clickSave() {
-        WaitFor.loaderToBeInvisible();
-        WaitFor.elementToBeClickable(saveBtn);
-        saveBtn.click();
+    public void clickSaveCandidate() {
+        WaitFor.click(saveButton);
     }
 
-    // ── Validations ───────────────────────────────────────────────────────────
-    public boolean isSuccessToastDisplayed() {
-        WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.SUCCESS_TOAST));
-        return Keyword.getDriver().findElement(
-            By.xpath(RecruitmentLocator.SUCCESS_TOAST)).isDisplayed();
+    public void clickSearch() {
+        WaitFor.click(searchButton);
     }
 
-    public boolean isRequiredErrorDisplayed() {
-        WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.REQUIRED_ERROR));
-        return Keyword.getDriver().findElement(
-            By.xpath(RecruitmentLocator.REQUIRED_ERROR)).isDisplayed();
+    public boolean isSuccessToastVisible() {
+        try { WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.SUCCESS_TOAST)); return true; }
+        catch (Exception e) { return false; }
     }
 
-    public boolean isEmailErrorDisplayed() {
-        WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.EMAIL_FORMAT_ERROR));
-        return Keyword.getDriver().findElement(
-            By.xpath(RecruitmentLocator.EMAIL_FORMAT_ERROR)).isDisplayed();
+    public boolean isRequiredErrorVisible() {
+        try { WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.REQUIRED_ERROR)); return true; }
+        catch (Exception e) { return false; }
     }
+
+    public boolean isEmailFormatErrorVisible() {
+        try { WaitFor.elementToBeVisible(By.xpath(RecruitmentLocator.EMAIL_FORMAT_ERROR)); return true; }
+        catch (Exception e) { return false; }
+    }
+
+    public boolean isCandidatesListDisplayed() {
+        try {
+            By tableOrNoRec = By.xpath("//div[contains(@class,'oxd-table')] | //span[normalize-space()='No Records Found']");
+            WaitFor.elementToBeVisible(tableOrNoRec);
+            return true;
+        } catch (Exception e) { return false; }
+    }
+    
+    public void enterCandidateKeyword(String keyword) {
+
+        By keywordInput = By.xpath(
+            "//label[normalize-space()='Keywords']/following::input[1]"
+        );
+
+        WaitFor.elementToBeVisible(keywordInput);
+
+        WebElement input = Keyword.getDriver().findElement(keywordInput);
+        input.clear();
+        input.sendKeys(keyword);
+    }
+    
+    public boolean isAddCandidatePageDisplayed() {
+
+        try {
+
+            By heading = By.xpath(
+                "//h6[normalize-space()='Add Candidate']"
+            );
+
+            WaitFor.elementToBeVisible(heading);
+
+            return Keyword.getDriver()
+                    .findElement(heading)
+                    .isDisplayed();
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public boolean isCandidateTableOrNoRecordsDisplayed() {
+
+        try {
+            By table = By.xpath("//div[contains(@class,'oxd-table-body')]");
+
+            WaitFor.elementToBeVisible(table);
+
+            return Keyword.getDriver()
+                    .findElement(table)
+                    .isDisplayed();
+
+        } catch (Exception e) {
+
+            try {
+                By noRecords = By.xpath("//span[normalize-space()='No Records Found']");
+
+                WaitFor.elementToBeVisible(noRecords);
+
+                return Keyword.getDriver()
+                        .findElement(noRecords)
+                        .isDisplayed();
+
+            } catch (Exception ex) {
+                return false;
+            }
+        }
+        }
+        
+        public boolean isSuccessToastDisplayed() {
+
+            try {
+
+                By toast = By.xpath("//div[contains(@class,'oxd-toast-content')]");
+
+                WaitFor.elementToBeVisible(toast);
+
+                return Keyword.getDriver().findElement(toast).isDisplayed();
+
+            } catch (Exception e) {
+                return false;
+            }
+        
+    }
+    
+        
+        
 }

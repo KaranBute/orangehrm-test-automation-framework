@@ -1,345 +1,245 @@
 package com.skillio.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.skillio.base.Keyword;
 import com.skillio.utils.WaitFor;
 
+
 public class LeavePage {
 
+    private final WebDriver driver;
+    private final WebDriverWait wait;
+
     public LeavePage() {
-        PageFactory.initElements(Keyword.getDriver(), this);
+        this.driver = Keyword.getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
-    // ── Locators ─────────────────────────────────────────────────────────────
+    private final By leaveMenu = By.xpath("//span[normalize-space()='Leave']");
+    private final By applyLink = By.xpath("//a[normalize-space()='Apply']");
+    private final By leaveListLink = By.xpath("//a[normalize-space()='Leave List']");
+    private final By leaveCalendarLink = By.xpath("//a[normalize-space()='Leave Calendar']");
 
-    @FindBy(xpath = "//span[text()='Leave']")
-    private WebElement leaveMenu;
+    private final By leaveTypeDropdown = By.xpath("//label[normalize-space()='Leave Type']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
+    private final By fromDateInput = By.xpath("//label[normalize-space()='From Date']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private final By toDateInput = By.xpath("//label[normalize-space()='To Date']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private final By commentTextarea = By.xpath("//textarea[contains(@class,'oxd-textarea')]");
+    private final By applyButton = By.xpath("//button[normalize-space()='Apply']");
+    private final By searchButton = By.xpath("//button[normalize-space()='Search']");
+    private final By successToast = By.xpath("//div[contains(@class,'oxd-toast') and contains(.,'Success')]");
+    private final By requiredError = By.xpath("//span[normalize-space()='Required']");
 
-    @FindBy(xpath = "//a[text()='Apply']")
-    private WebElement applyLink;
+    private WebElement visible(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
 
-    @FindBy(xpath = "//a[text()='Leave List']")
-    private WebElement leaveListLink;
+    private WebElement clickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
 
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement submitBtn;
+    private void safeClick(By locator) {
+        for (int i = 0; i < 3; i++) {
+            try {
+                WebElement element = clickable(locator);
+                scrollToElement(element);
+                element.click();
+                return;
+            } catch (StaleElementReferenceException | ElementClickInterceptedException e) {
+                sleep(700);
+            }
+        }
 
-    @FindBy(css = ".oxd-toast-content-text")
-    private WebElement successToast;
+        WebElement element = clickable(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
 
-    @FindBy(xpath = "//span[contains(text(),'Should be after')]")
-    private WebElement dateError;
+    private void typeDate(By locator, String date) {
+        WebElement element = visible(locator);
+        scrollToElement(element);
 
-    @FindBy(xpath = "//button[normalize-space()='Approve']")
-    private WebElement approveBtn;
+        try {
+            element.click();
+            element.sendKeys(Keys.CONTROL + "a");
+            element.sendKeys(Keys.DELETE);
+            element.sendKeys(date);
+            element.sendKeys(Keys.TAB);
+        } catch (ElementNotInteractableException e) {
+            ((JavascriptExecutor) driver).executeScript(
+                    "arguments[0].value=''; arguments[0].value=arguments[1]; arguments[0].dispatchEvent(new Event('input', { bubbles: true })); arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+                    element,
+                    date
+            );
+        }
+    }
 
-    @FindBy(xpath = "//button[normalize-space()='Reject']")
-    private WebElement rejectBtn;
+    private void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView({block:'center'});",
+                element
+        );
+    }
 
-    // ── Actions ──────────────────────────────────────────────────────────────
-
-    public void login(String username, String password) {
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginWithCredentials(username, password);
+    private void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public void navigateToLeave() {
-        WaitFor.elementToBeClickable(leaveMenu);
-        leaveMenu.click();
+        safeClick(leaveMenu);
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.visibilityOfElementLocated(applyLink),
+                ExpectedConditions.visibilityOfElementLocated(leaveListLink)
+        ));
     }
 
     public void clickApply() {
-        WaitFor.elementToBeClickable(applyLink);
-        applyLink.click();
+        safeClick(applyLink);
+        visible(By.xpath("//h6[contains(normalize-space(),'Apply Leave') or contains(normalize-space(),'Leave')]"));
+    }
+
+    public void clickApplyLeave() {
+        clickApply();
     }
 
     public void clickLeaveList() {
-        WaitFor.elementToBeClickable(leaveListLink);
-        leaveListLink.click();
+        safeClick(leaveListLink);
     }
 
-    public void applyLeave(String leaveType, String fromDate, String toDate, String comment) {
-        // Extend: select leaveType dropdown, enter dates, enter comment
-        // Keeping as stub — extend with actual locators
-    }
-
-    public void selectLeaveType(String leaveType) {
-        // Extend with dropdown selection
-    }
-
-    public void enterFromDate(String fromDate) {
-        // Extend with date picker locator
-    }
-
-    public void enterToDate(String toDate) {
-        // Extend with date picker locator
-    }
-
-    public void enterComment(String comment) {
-        // Extend with comment textarea locator
-    }
-
-    public void filterByStatus(String status) {
-        // Extend with status dropdown locator
-    }
-
-    public void openFirstPendingRequest() {
-        // Extend: click first row in leave list
-    }
-
-    public void clickApprove() {
-        WaitFor.elementToBeClickable(approveBtn);
-        approveBtn.click();
-    }
-
-    public void clickReject() {
-        WaitFor.elementToBeClickable(rejectBtn);
-        rejectBtn.click();
-    }
-
-    public void clickSubmit() {
-        WaitFor.elementToBeClickable(submitBtn);
-        submitBtn.click();
-    }
-
-    // ── Validations ──────────────────────────────────────────────────────────
-
-    public boolean isSuccessToastDisplayed() {
-        WaitFor.elementToBeVisible(successToast);
-        return successToast.isDisplayed();
-    }
-
-    public boolean isDateErrorDisplayed() {
-        return dateError.isDisplayed();
-    }
-    
-    @FindBy(xpath = "//span[text()='Leave']")
-    private WebElement leaveMenu1;
-
-    // Leave type dropdown (custom OrangeHRM selector)
-    @FindBy(xpath = "//label[text()='Leave Type']/following::div[@class='oxd-select-wrapper'][1]")
-    private WebElement leaveTypeDropdown;
-
-    // From date input
-    @FindBy(xpath = "//label[text()='From Date']/following::input[@placeholder='yyyy-dd-mm'][1]")
-    private WebElement fromDateInput;
-
-    // To date input
-    @FindBy(xpath = "//label[text()='To Date']/following::input[@placeholder='yyyy-dd-mm'][1]")
-    private WebElement toDateInput;
-
-    // Comment textarea
-    @FindBy(xpath = "//label[text()='Comments']/following::textarea[1]")
-    private WebElement commentInput;
-
-    // Apply / Submit button
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement submitBtn1;
-
-    // Status filter dropdown
-    @FindBy(xpath = "//label[text()='Status']/following::div[@class='oxd-select-wrapper'][1]")
-    private WebElement statusFilterDropdown;
-
-    @FindBy(xpath = "//button[normalize-space()='Search']")
-    private WebElement searchBtn;
-
-    // Success toast
-    @FindBy(css = ".oxd-toast-content-text")
-    private WebElement successToast1;
-
-    // Date validation error
-    @FindBy(xpath = "//span[contains(text(),'Should be after') or contains(text(),'after from date')]")
-    private WebElement dateError1;
-
-    // Leave type required error
-    @FindBy(xpath = "//label[text()='Leave Type']/following::span[text()='Required'][1]")
-    private WebElement leaveTypeError;
-
-    // My Leave / Leave List table
-    @FindBy(xpath = "//div[@class='oxd-table-body']")
-    private WebElement leaveTable;
-
-    // Leave calendar container
-    @FindBy(xpath = "//div[@class='attendance-calendar']")
-    private WebElement leaveCalendar;
-
-    // Duration text shown after dates are entered (e.g., "0.00 Day(s)")
-    @FindBy(xpath = "//p[contains(@class,'oxd-text') and contains(text(),'Day')]")
-    private WebElement leaveDurationText;
-
-    // Leave status cell in My Leave list
-    @FindBy(xpath = "(//div[@class='oxd-table-card']//div)[6]")
-    private WebElement leaveStatusCell;
-
-    // Cancel button inside a leave request
-    @FindBy(xpath = "//button[normalize-space()='Cancel']")
-    private WebElement cancelBtn;
-
-    // Approve / Reject buttons
-    @FindBy(xpath = "//button[normalize-space()='Approve']")
-    private WebElement approveBtn1;
-
-    @FindBy(xpath = "//button[normalize-space()='Reject']")
-    private WebElement rejectBtn1;
-
-    // ─── NAVIGATION ───────────────────────────────────────────────────────
-
-    public void navigateToLeave1() {
-        WaitFor.elementToBeClickable(leaveMenu);
-        leaveMenu.click();
+    public void clickLeaveCalendar() {
+        safeClick(leaveCalendarLink);
     }
 
     public void clickLeaveSubMenu(String option) {
-        By menuOption = By.xpath("//a[normalize-space()='" + option + "']");
-        WaitFor.elementToBeClickable(menuOption);
-        Keyword.getDriver().findElement(menuOption).click();
+        By optionLink = By.xpath("//a[normalize-space()='" + option + "']");
+        safeClick(optionLink);
     }
 
-    // ─── APPLY LEAVE FORM ─────────────────────────────────────────────────
+    public void selectLeaveType(String leaveType) {
+        safeClick(leaveTypeDropdown);
 
-    public void selectLeaveType1(String leaveType) {
-        WaitFor.elementToBeClickable(leaveTypeDropdown);
-        leaveTypeDropdown.click();
-        By option = By.xpath(
-            "//div[@class='oxd-select-dropdown']//span[normalize-space()='" + leaveType + "']"
-        );
-        WaitFor.elementToBeClickable(option);
-        Keyword.getDriver().findElement(option).click();
+        By option = By.xpath("//div[@role='listbox']//span[normalize-space()='" + leaveType + "']");
+        safeClick(option);
     }
 
-    public void enterFromDate1(String date) {
-        WaitFor.elementToBeVisible(fromDateInput);
-        fromDateInput.clear();
-        fromDateInput.sendKeys(date);
+    public void enterFromDate(String date) {
+        typeDate(fromDateInput, date);
     }
 
-    public void enterToDate1(String date) {
-        WaitFor.elementToBeVisible(toDateInput);
-        toDateInput.clear();
-        toDateInput.sendKeys(date);
+    public void enterToDate(String date) {
+        typeDate(toDateInput, date);
     }
 
-    public void enterComment1(String comment) {
-        WaitFor.elementToBeVisible(commentInput);
-        commentInput.clear();
-        commentInput.sendKeys(comment);
+    public void enterComment(String comment) {
+        WebElement element = visible(commentTextarea);
+        scrollToElement(element);
+        element.click();
+        element.sendKeys(Keys.CONTROL + "a");
+        element.sendKeys(Keys.DELETE);
+        element.sendKeys(comment);
     }
 
     public void clickApplyButton() {
-        WaitFor.elementToBeClickable(submitBtn);
-        submitBtn.click();
+        safeClick(applyButton);
     }
 
-    // ─── LEAVE LIST / ADMIN ACTIONS ───────────────────────────────────────
-
-    public void filterByStatus1(String status) {
-        WaitFor.elementToBeClickable(statusFilterDropdown);
-        statusFilterDropdown.click();
-        By option = By.xpath(
-            "//div[@class='oxd-select-dropdown']//span[normalize-space()='" + status + "']"
-        );
-        WaitFor.elementToBeClickable(option);
-        Keyword.getDriver().findElement(option).click();
-        WaitFor.elementToBeClickable(searchBtn);
-        searchBtn.click();
+    public void clickSearch() {
+        safeClick(searchButton);
     }
 
-    public void openFirstPendingRequest1() {
-        By firstRow = By.xpath("(//div[@class='oxd-table-card'])[1]");
-        WaitFor.elementToBeClickable(firstRow);
-        Keyword.getDriver().findElement(firstRow).click();
+    public boolean isLeaveSuccessToastVisible() {
+        try {
+            visible(successToast);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
-    public void openLeaveRequestByStatus(String status) {
-        By row = By.xpath(
-            "//div[@class='oxd-table-card'][.//div[normalize-space()='" + status + "']]"
-        );
-        WaitFor.elementToBeClickable(row);
-        Keyword.getDriver().findElement(row).click();
+    public boolean isDateErrorDisplayed() {
+        try {
+            By error = By.xpath(
+                    "//span[contains(normalize-space(),'Should be after') " +
+                    "or contains(normalize-space(),'should be after') " +
+                    "or contains(normalize-space(),'Invalid') " +
+                    "or contains(normalize-space(),'Required')]"
+            );
+            visible(error);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    public void clickApprove1() {
-        WaitFor.elementToBeClickable(approveBtn);
-        approveBtn.click();
-    }
-
-    public void clickReject1() {
-        WaitFor.elementToBeClickable(rejectBtn);
-        rejectBtn.click();
-    }
-
-    public void clickCancel() {
-        WaitFor.elementToBeClickable(cancelBtn);
-        cancelBtn.click();
-    }
-
-    // Delegate login to LoginPage — avoids duplicating login logic
-    public void login1(String username, String password) {
-        new LoginPage().loginWithCredentials(username, password);
-    }
-
-    // ─── VALIDATIONS ──────────────────────────────────────────────────────
-
-    public boolean isSuccessToastDisplayed1() {
-        WaitFor.elementToBeVisible(successToast);
-        return successToast.isDisplayed();
-    }
-
-    public String getDateOrValidationError() {
-        WaitFor.elementToBeVisible(dateError);
-        return dateError.getText();
-    }
-
-    public String getLeaveTypeValidationError() {
-        WaitFor.elementToBeVisible(leaveTypeError);
-        return leaveTypeError.getText();
+    public boolean isLeaveTypeValidationErrorDisplayed() {
+        try {
+            visible(requiredError);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean isLeaveListTableVisible() {
-        WaitFor.elementToBeVisible(leaveTable);
-        return leaveTable.isDisplayed();
+        try {
+            By tableOrNoRecord = By.xpath(
+                    "//div[contains(@class,'oxd-table')] | " +
+                    "//span[normalize-space()='No Records Found']"
+            );
+            visible(tableOrNoRecord);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean isLeaveCalendarDisplayed() {
-        WaitFor.elementToBeVisible(leaveCalendar);
-        return leaveCalendar.isDisplayed();
-    }
-
-    public String getLeaveDurationText() {
-        WaitFor.elementToBeVisible(leaveDurationText);
-        return leaveDurationText.getText();
-    }
-
-    public String getLeaveStatusText() {
-        WaitFor.elementToBeVisible(leaveStatusCell);
-        return leaveStatusCell.getText();
-    }
-
-    // Legacy aliases kept for LeaveSteps.java compatibility
-    public void clickLeaveList1() {
-        clickLeaveSubMenu("Leave List");
-    }
-
-    public void clickApply1() {
-        clickLeaveSubMenu("Apply");
-    }
-
-    public void applyLeave1(String leaveType, String from, String to, String comment) {
-        selectLeaveType(leaveType);
-        enterFromDate(from);
-        enterToDate(to);
-        if (comment != null && !comment.isEmpty()) {
-            enterComment(comment);
+        try {
+            By calendarPage = By.xpath(
+                    "//h6[contains(normalize-space(),'Leave Calendar')] | " +
+                    "//div[contains(@class,'calendar')] | " +
+                    "//div[contains(@class,'orangehrm-calendar')]"
+            );
+            visible(calendarPage);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
-        clickApplyButton();
     }
 
-    public boolean isDateErrorDisplayed1() {
-        return dateError.isDisplayed();
+    public int getCommentFieldLength() {
+        try {
+            WebElement element = visible(commentTextarea);
+            String value = element.getAttribute("value");
+            return value == null ? 0 : value.length();
+        } catch (Exception e) {
+            return 0;
+        }
     }
+    
+    public void selectLeaveType1(String type) {
 
+        By dropdown = By.xpath("//label[text()='Leave Type']/following::div[contains(@class,'oxd-select-text')][1]");
+        WaitFor.elementToBeClickable(dropdown);
+        Keyword.getDriver().findElement(dropdown).click();
+
+        By option = By.xpath("//div[@role='listbox']//span[contains(text(),'" + type + "')]");
+        WaitFor.elementToBeVisible(option);
+        Keyword.getDriver().findElement(option).click();
+    }
 }

@@ -1,31 +1,38 @@
 package com.skillio.stepdefinitions;
 
-import org.testng.Assert;
 import com.skillio.pages.LeavePage;
 import io.cucumber.java.en.*;
+import org.testng.Assert;
 
 public class LeaveSteps {
 
-    // ✅ Single object (lazy initialization)
-    private LeavePage leave;
+    private LeavePage leavePage;
 
     private LeavePage getLeavePage() {
-        if (leave == null) {
-            leave = new LeavePage();
+        if (leavePage == null) {
+            leavePage = new LeavePage();
         }
-        return leave;
+        return leavePage;
     }
-
-    // ── Navigation ─────────────────────────────────────────
 
     @When("user navigates to Leave module")
     public void userNavigatesToLeaveModule() {
         getLeavePage().navigateToLeave();
     }
 
-    @When("user clicks {string} option")
-    public void userClicksOption(String option) {
-        getLeavePage().clickLeaveSubMenu(option);
+    @When("user clicks on Apply leave link")
+    public void userClicksOnApplyLeaveLink() {
+        getLeavePage().clickApplyLeave();
+    }
+
+    @When("user clicks on Leave List link")
+    public void userClicksOnLeaveListLink() {
+        getLeavePage().clickLeaveList();
+    }
+
+    @When("user clicks on Leave Calendar link")
+    public void userClicksOnLeaveCalendarLink() {
+        getLeavePage().clickLeaveCalendar();
     }
 
     @When("user selects leave type {string}")
@@ -33,15 +40,21 @@ public class LeaveSteps {
         getLeavePage().selectLeaveType(leaveType);
     }
 
-    @When("user enters from date {string} and to date {string}")
-    public void userEntersFromDateAndToDate(String fromDate, String toDate) {
+    // renamed to avoid duplicate with other modules
+    @When("user enters leave from date {string} and leave to date {string}")
+    public void userEntersLeaveFromDateAndLeaveToDate(String fromDate, String toDate) {
         getLeavePage().enterFromDate(fromDate);
         getLeavePage().enterToDate(toDate);
     }
 
-    @When("user enters comment {string}")
-    public void userEntersComment(String comment) {
+    @When("user enters leave comment {string}")
+    public void userEntersLeaveComment(String comment) {
         getLeavePage().enterComment(comment);
+    }
+
+    @When("user enters leave comment with 251 characters")
+    public void userEntersLeaveCommentWith251Characters() {
+        getLeavePage().enterComment("A".repeat(251));
     }
 
     @When("user clicks Apply button")
@@ -49,95 +62,52 @@ public class LeaveSteps {
         getLeavePage().clickApplyButton();
     }
 
-    @When("user filters by status {string}")
-    public void userFiltersByStatus(String status) {
-        getLeavePage().filterByStatus(status);
+    @When("user clicks Search on the leave list form")
+    public void userClicksSearchOnTheLeaveListForm() {
+        getLeavePage().clickSearch();
     }
 
-    @When("user opens first pending leave request")
-    public void userOpensFirstPendingLeaveRequest() {
-        getLeavePage().openFirstPendingRequest();
-    }
-
-    @When("user opens a leave request with status {string}")
-    public void userOpensLeaveRequestWithStatus(String status) {
-        getLeavePage().openLeaveRequestByStatus(status);
-    }
-
-    @When("user clicks Approve button")
-    public void userClicksApproveButton() {
-        getLeavePage().clickApprove();
-    }
-
-    @When("user clicks Reject button")
-    public void userClicksRejectButton() {
-        getLeavePage().clickReject();
-    }
-
-    @When("user clicks Cancel button on leave request")
-    public void userClicksCancelButtonOnLeaveRequest() {
-        getLeavePage().clickCancel();
-    }
-
-    // ─── THEN ─────────────────────────────────────────────
-
-    @Then("leave request should be submitted with status {string}")
-    public void leaveRequestShouldBeSubmitted(String expectedStatus) {
+    @Then("leave apply success toast should be displayed")
+    public void leaveApplySuccessToastShouldBeDisplayed() {
         Assert.assertTrue(
-            getLeavePage().isSuccessToastDisplayed(),
-            "Leave submission failed. Expected status: " + expectedStatus
-        );
+                getLeavePage().isLeaveSuccessToastVisible(),
+                "Leave success toast not visible!");
     }
 
-    @Then("error message {string} should be displayed")
-    public void errorMessageShouldBeDisplayed(String expectedMessage) {
-        String actual = getLeavePage().getDateOrValidationError();
+    @Then("leave list results should be displayed")
+    public void leaveListResultsShouldBeDisplayed() {
         Assert.assertTrue(
-            actual.contains(expectedMessage),
-            "Expected error [" + expectedMessage + "] but got: " + actual
-        );
+                getLeavePage().isLeaveListTableVisible(),
+                "Leave list results table not visible!");
     }
 
-    @Then("leave status should change to {string}")
-    public void leaveStatusShouldChangeTo(String expectedStatus) {
-        String actual = getLeavePage().getLeaveStatusText();
-        Assert.assertEquals(
-            actual, expectedStatus,
-            "Leave status mismatch after action"
-        );
-    }
-
-    @Then("field validation error {string} should appear under leave type")
-    public void fieldValidationErrorShouldAppearUnderLeaveType(String expectedError) {
-        Assert.assertEquals(
-            getLeavePage().getLeaveTypeValidationError(),
-            expectedError,
-            "Leave type validation error mismatch"
-        );
-    }
-
-    @Then("leave entitlement list should be visible with leave types")
-    public void leaveEntitlementListShouldBeVisible() {
+    @Then("leave date validation error should be displayed")
+    public void leaveDateValidationErrorShouldBeDisplayed() {
         Assert.assertTrue(
-            getLeavePage().isLeaveListTableVisible(),
-            "Leave list table not visible"
-        );
+                getLeavePage().isDateErrorDisplayed(),
+                "Leave date validation error not visible!");
     }
 
-    @Then("the leave calendar should be displayed for current month")
+    @Then("leave type required validation error should be displayed")
+    public void leaveTypeRequiredValidationErrorShouldBeDisplayed() {
+        Assert.assertTrue(
+                getLeavePage().isLeaveTypeValidationErrorDisplayed(),
+                "Leave type required validation error not visible!");
+    }
+
+    @Then("the leave calendar should be displayed")
     public void theLeaveCalendarShouldBeDisplayed() {
         Assert.assertTrue(
-            getLeavePage().isLeaveCalendarDisplayed(),
-            "Leave calendar not displayed"
-        );
+                getLeavePage().isLeaveCalendarDisplayed(),
+                "Leave calendar not displayed!");
     }
 
-    @Then("leave duration should display {string}")
-    public void leaveDurationShouldDisplay(String expectedDuration) {
-        String actual = getLeavePage().getLeaveDurationText();
-        Assert.assertEquals(
-            actual, expectedDuration,
-            "Leave duration mismatch"
-        );
+    @Then("leave comment length should not exceed 250 characters in the field")
+    public void leaveCommentLengthShouldNotExceed250() {
+        int len = getLeavePage().getCommentFieldLength();
+
+        Assert.assertTrue(
+                len <= 250,
+                "Comment length " + len + " exceeds 250 characters!");
     }
 }

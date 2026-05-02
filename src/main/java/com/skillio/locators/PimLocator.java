@@ -1,12 +1,11 @@
 package com.skillio.locators;
 
-public class PimLocator {
-    private PimLocator() {}
+public interface PimLocator {
 
     public static final String PIM_MENU            = "//span[normalize-space()='PIM']";
     public static final String ADD_EMPLOYEE_BTN    = "//button[normalize-space()='Add']";
     public static final String SEARCH_NAME_INPUT   =
-        "//input[@placeholder='Type for hints...']";
+        "(//input[@placeholder='Type for hints...'])[1]";
     public static final String SEARCH_BUTTON       = "//button[normalize-space()='Search']";
     public static final String FIRST_NAME          = "//input[@name='firstName']";
     public static final String MIDDLE_NAME         = "//input[@name='middleName']";

@@ -1,86 +1,85 @@
 package com.skillio.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import com.skillio.base.Keyword;
+import com.skillio.locators.DashboardLocator;
 import com.skillio.utils.WaitFor;
 
 public class DashboardPage {
 
-    WebDriver driver = Keyword.getDriver();
-
-    // Locators
-    private By pageHeaderTitle = By.xpath("//h6[contains(@class, 'oxd-topbar-header-breadcrumb-module')]");
-    private By menuSearchInput = By.xpath("//input[@placeholder='Search']");
-    private By adminMenuLink = By.xpath("//a[contains(@href, 'viewAdminModule')]");
-
-    private By getWidgetHeader(String widgetName) {
-        return By.xpath("//p[text()='" + widgetName + "']");
+    public DashboardPage() {
+        PageFactory.initElements(Keyword.getDriver(), this);
     }
 
+    @FindBy(xpath = DashboardLocator.DASHBOARD_HEADER)
+    private WebElement dashboardHeader;
+
+    @FindBy(xpath = DashboardLocator.TIME_AT_WORK_WIDGET)
+    private WebElement timeAtWorkWidget;
+
+    private By pageHeaderLocator = By.xpath("//h6[contains(@class,'oxd-topbar-header-breadcrumb-module')]");
+    private By menuSearchInput   = By.xpath("//input[@placeholder='Search']");
+
     public String getPageHeader() {
-        return driver.findElement(pageHeaderTitle).getText();
+        WaitFor.elementToBeVisible(pageHeaderLocator);
+        return Keyword.getDriver().findElement(pageHeaderLocator).getText().trim();
     }
 
     public boolean isWidgetDisplayed(String widgetName) {
-        return driver.findElement(getWidgetHeader(widgetName)).isDisplayed();
+        try {
+            By widget = By.xpath("//*[normalize-space()='" + widgetName + "']");
+            WaitFor.elementToBeVisible(widget);
+            return Keyword.getDriver().findElement(widget).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void searchMenu(String searchText) {
-        driver.findElement(menuSearchInput).clear();
-        driver.findElement(menuSearchInput).sendKeys(searchText);
+        WaitFor.elementToBeVisible(menuSearchInput);
+        WebElement el = Keyword.getDriver().findElement(menuSearchInput);
+        el.clear();
+        el.sendKeys(searchText);
     }
 
     public boolean isAdminMenuVisible() {
-        return driver.findElement(adminMenuLink).isDisplayed();
-    }
-    
- 
-
-    // ─── LOCATORS ──────────────────────────────────────────────────────────
-
-    private By pageHeaderTitle1   = By.xpath("//h6[contains(@class, 'oxd-topbar-header-breadcrumb-module')]");
-    private By menuSearchInput1   = By.xpath("//input[@placeholder='Search']");
-    private By adminMenuLink1     = By.xpath("//a[contains(@href, 'viewAdminModule')]");
-
-    private By getWidgetHeader1(String widgetName) {
-        return By.xpath("//p[text()='" + widgetName + "']");
+        try {
+            By adminMenu = By.xpath("//span[normalize-space()='Admin']");
+            WaitFor.elementToBeVisible(adminMenu);
+            return Keyword.getDriver().findElement(adminMenu).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    // ─── EXISTING METHODS (unchanged) ─────────────────────────────────────
-
-    public String getPageHeader1() {
-        WaitFor.elementToBeVisible(pageHeaderTitle);
-        return driver.findElement(pageHeaderTitle).getText();
-    }
-
-    public boolean isWidgetDisplayed1(String widgetName) {
-        By widget = getWidgetHeader(widgetName);
-        WaitFor.elementToBeVisible(widget);
-        return driver.findElement(widget).isDisplayed();
-    }
-
-    public void searchMenu1(String searchText) {
-        driver.findElement(menuSearchInput).clear();
-        driver.findElement(menuSearchInput).sendKeys(searchText);
-    }
-
-    public boolean isAdminMenuVisible1() {
-        return driver.findElement(adminMenuLink).isDisplayed();
-    }
-
-    // ─── NEW METHOD (TC_DASH_05) ──────────────────────────────────────────
-
-    /**
-     * Clicks a menu item in the left-hand side navigation.
-     * Example: clickSideNavMenu("Admin") navigates to the Admin module.
-     *
-     * @param menuItem visible text of the nav span (e.g., "Admin", "PIM", "Leave")
-     */
     public void clickSideNavMenu(String menuItem) {
-        By navItem = By.xpath("//span[text()='" + menuItem + "']");
+        By navItem = By.xpath("//span[normalize-space()='" + menuItem + "']");
         WaitFor.elementToBeClickable(navItem);
-        driver.findElement(navItem).click();
+        Keyword.getDriver().findElement(navItem).click();
+    }
+
+    public void assertDashboardHeaderVisible(String expectedText) {
+        WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='" + expectedText + "']"));
+        Assert.assertTrue(dashboardHeader.isDisplayed(),
+            "Dashboard header '" + expectedText + "' not visible.");
+    }
+
+    public void assertTimeAtWorkWidgetDisplayed() {
+        WaitFor.elementToBeVisible(By.xpath(DashboardLocator.TIME_AT_WORK_WIDGET));
+        Assert.assertTrue(timeAtWorkWidget.isDisplayed(), "'Time at Work' widget not visible.");
+    }
+
+    public boolean isDashboardVisible() {
+        try {
+            WaitFor.elementToBeVisible(By.xpath(DashboardLocator.DASHBOARD_HEADER));
+            return Keyword.getDriver().findElement(By.xpath(DashboardLocator.DASHBOARD_HEADER)).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

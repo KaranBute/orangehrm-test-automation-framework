@@ -1,30 +1,25 @@
 package com.skillio.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.skillio.base.Keyword;
-import com.skillio.locators.AdminLocator;
 import com.skillio.utils.WaitFor;
 
-/**
- * FIXES:
- *  - getDriver() used throughout instead of threadLocal.get().
- *  - Employee name auto-complete uses contains() to handle partial matches
- *    reliably (OrangeHRM sometimes trims/formats the displayed name).
- *  - All dropdowns wait for listbox before selecting option.
- */
 public class AddUserPage {
 
     public AddUserPage() {
-        PageFactory.initElements(Keyword.getDriver(), this); // FIXED
+        PageFactory.initElements(Keyword.getDriver(), this);
     }
 
-    @FindBy(xpath = "//label[normalize-space()='User Role']/following::div[contains(@class,'oxd-select-text')][1]")
+    @FindBy(xpath = "//label[normalize-space()='User Role']/following::div[contains(@class,'oxd-select-text-input')][1]")
     private WebElement userRoleDropdown;
 
-    @FindBy(xpath = "//label[normalize-space()='Status']/following::div[contains(@class,'oxd-select-text')][1]")
+    @FindBy(xpath = "//label[normalize-space()='Status']/following::div[contains(@class,'oxd-select-text-input')][1]")
     private WebElement statusDropdown;
 
     @FindBy(xpath = "//label[normalize-space()='Username']/following::input[1]")
@@ -39,63 +34,78 @@ public class AddUserPage {
     @FindBy(xpath = "//button[normalize-space()='Save']")
     private WebElement saveButton;
 
-    public void selectUserRoleAdmin() {
+    public void selectUserRole(String role) {
         WaitFor.elementToBeClickable(userRoleDropdown);
         userRoleDropdown.click();
-        WaitFor.listboxOptionToBeClickable("Admin");
-        Keyword.getDriver().findElement(By.xpath(AdminLocator.USER_ROLE_ADMIN)).click();
+
+        By option = By.xpath("//div[@role='listbox']//span[normalize-space()='" + role + "']");
+        WaitFor.elementToBeClickable(option);
+        Keyword.getDriver().findElement(option).click();
     }
 
-    /**
-     * Types employee name hint, waits for suggestion list, then clicks the
-     * first suggestion that contains the hint text (case-insensitive).
-     * FIX: uses contains() instead of exact match — OrangeHRM may display
-     * the name with extra formatting.
-     */
-    public void enterEmployeeNameAndSelect(String hint) {
-        By inputBy = By.xpath(AdminLocator.EMPLOYEE_NAME_INPUT);
-        WaitFor.elementToBeVisible(inputBy);
-        WebElement input = Keyword.getDriver().findElement(inputBy);
+    public void selectUserRoleAdmin() {
+        selectUserRole("Admin");
+    }
+
+    public void enterEmployeeNameAndSelect(String Manda ) {
+        By mandaInput = By.xpath("//input[@placeholder='Type for hints...']");
+        WaitFor.elementToBeVisible(mandaInput);
+
+        WebElement input = Keyword.getDriver().findElement(mandaInput);
         input.clear();
-        input.sendKeys(hint);
+        input.sendKeys(Manda);
 
-        // Wait for suggestion list to appear
-        WaitFor.suggestionListToBeVisible();
+        WaitFor.elementToBeVisible(By.xpath("//div[@role='listbox']"));
 
-        // Click first suggestion that contains the hint text
-        java.util.List<WebElement> suggestions = Keyword.getDriver()
-            .findElements(By.xpath("//div[@role='listbox']//span"));
-        for (WebElement s : suggestions) {
-            if (s.getText().toLowerCase().contains(hint.toLowerCase().split(" ")[0])) {
-                s.click();
-                System.out.println("[AddUserPage] Selected suggestion: " + s.getText());
-                return;
-            }
+        List<WebElement> suggestions = Keyword.getDriver()
+                .findElements(By.xpath("//div[@role='listbox']//span"));
+
+        if (suggestions.isEmpty()) {
+            throw new RuntimeException("[AddUserPage] No employee suggestions found.");
         }
-        throw new RuntimeException(
-            "[AddUserPage] No suggestion found containing: " + hint);
+
+        suggestions.get(0).click();
+    }
+
+    public void selectStatus(String status) {
+        WaitFor.elementToBeClickable(statusDropdown);
+        statusDropdown.click();
+
+        By option = By.xpath("//div[@role='listbox']//span[normalize-space()='" + status + "']");
+        WaitFor.elementToBeClickable(option);
+        Keyword.getDriver().findElement(option).click();
     }
 
     public void selectStatusEnabled() {
-        WaitFor.elementToBeClickable(statusDropdown);
-        statusDropdown.click();
-        WaitFor.listboxOptionToBeClickable("Enabled");
-        Keyword.getDriver().findElement(By.xpath(AdminLocator.STATUS_ENABLED)).click();
+        selectStatus("Enabled");
     }
 
-    public void enterUsername(String username) {
+    public void enterUsername(String JohnDoe) {
         WaitFor.elementToBeVisible(usernameInput);
         usernameInput.clear();
-        usernameInput.sendKeys(username);
+        usernameInput.sendKeys(JohnDoe);
     }
 
-    public void enterPasswordAndConfirm(String password) {
+    public void enterPassword(String password) {
         WaitFor.elementToBeVisible(passwordInput);
         passwordInput.clear();
         passwordInput.sendKeys(password);
+    }
+
+    public void enterConfirmPassword(String confirmPassword) {
         WaitFor.elementToBeVisible(confirmPasswordInput);
         confirmPasswordInput.clear();
-        confirmPasswordInput.sendKeys(password);
+        confirmPasswordInput.sendKeys(confirmPassword);
+    }
+
+    public void enterPasswordAndConfirm(String password) {
+        enterPassword(password);
+        enterConfirmPassword(password);
+    }
+
+    public void enterPasswordAndConfirm(String password, String confirmPassword) {
+        enterPassword(password);
+        enterConfirmPassword(confirmPassword);
     }
 
     public void clickSave() {

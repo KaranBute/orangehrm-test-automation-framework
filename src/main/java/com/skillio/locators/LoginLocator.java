@@ -4,8 +4,7 @@ package com.skillio.locators;
  * LoginLocator — all locators for the OrangeHRM login page.
  * Strategy: prefer name attribute > CSS > xpath for stability.
  */
-public class LoginLocator {
-    private LoginLocator() {}
+public interface LoginLocator {
 
     public static final String USERNAME        = "//input[@name='username']";
     public static final String PASSWORD        = "//input[@name='password']";

@@ -1,6 +1,7 @@
 package com.skillio.pages;
 
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -26,9 +27,6 @@ public class LoginPage {
     @FindBy(css = "p.oxd-alert-content-text")
     private WebElement loginErrorMsg;
 
-    @FindBy(xpath = "//h6[normalize-space()='Dashboard']")
-    private WebElement dashboardHeader;
-
     public void enterUserName(String userName) {
         WaitFor.elementToBeVisible(userNameField);
         userNameField.clear();
@@ -52,14 +50,19 @@ public class LoginPage {
         clickSignInBtn();
     }
 
+    public void navigateToLoginPage() {
+        // Already on login page from Hooks; ensure it's visible
+        WaitFor.elementToBeVisible(By.name("username"));
+    }
+
+    public void clickLoginButton() {
+        WaitFor.elementToBeClickable(signInBtn);
+        signInBtn.click();
+    }
+
     public String getLoginErrorMessage() {
         WaitFor.elementToBeVisible(By.cssSelector("p.oxd-alert-content-text"));
         return loginErrorMsg.getText().trim();
-    }
-
-    public String getDashboardHeaderText() {
-        WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Dashboard']"));
-        return dashboardHeader.getText().trim();
     }
 
     public String getUsernameFieldError() {

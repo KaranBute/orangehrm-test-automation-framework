@@ -1,124 +1,87 @@
 package com.skillio.pages;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import com.skillio.base.Keyword;
+import com.skillio.locators.AdminLocator;
 import com.skillio.utils.WaitFor;
 
-/**
- * AdminPage_New — supports TC_ADMIN_01 to TC_ADMIN_05.
- * Covers: Add User, Duplicate Username, Password Mismatch, Search User, Job Titles.
- */
 public class AdminPage_New {
 
     public AdminPage_New() {
         PageFactory.initElements(Keyword.getDriver(), this);
     }
 
-    // ─── LOCATORS ──────────────────────────────────────────────────────────
+    @FindBy(xpath = AdminLocator.ADMIN_MENU)
+    private WebElement adminMenu;
 
-    @FindBy(xpath = "//span[text()='Admin']")
-    private WebElement adminMenuLink;
+    @FindBy(xpath = AdminLocator.ADD_BUTTON)
+    private WebElement addButton;
 
-    @FindBy(xpath = "//button[normalize-space()='Add']")
-    private WebElement addUserBtn;
-
-    // User Role dropdown (OrangeHRM uses custom oxd-select-wrapper)
-    @FindBy(xpath = "(//div[@class='oxd-select-wrapper'])[1]")
+    @FindBy(xpath = AdminLocator.USER_ROLE_DROPDOWN)
     private WebElement userRoleDropdown;
 
-    // Employee name typeahead
-    @FindBy(xpath = "//input[@placeholder='Type for hints...']")
+    @FindBy(xpath = AdminLocator.EMPLOYEE_NAME_INPUT)
     private WebElement employeeNameInput;
 
-    // Status dropdown
-    @FindBy(xpath = "(//div[@class='oxd-select-wrapper'])[2]")
+    @FindBy(xpath = AdminLocator.STATUS_DROPDOWN)
     private WebElement statusDropdown;
 
-    // Username input on Add User form
-    @FindBy(xpath = "(//input[@class='oxd-input oxd-input--active'])[1]")
+    @FindBy(xpath = AdminLocator.USERNAME_INPUT)
     private WebElement usernameInput;
 
-    // Password field
-    @FindBy(xpath = "(//input[@type='password'])[1]")
+    @FindBy(xpath = AdminLocator.PASSWORD_INPUT)
     private WebElement passwordInput;
 
-    // Confirm password field
-    @FindBy(xpath = "(//input[@type='password'])[2]")
+    @FindBy(xpath = AdminLocator.CONFIRM_PASSWORD_INPUT)
     private WebElement confirmPasswordInput;
 
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement saveBtn;
+    @FindBy(xpath = AdminLocator.SAVE_BUTTON)
+    private WebElement saveButton;
 
-    // Password mismatch error
-    @FindBy(xpath = "//span[text()='Passwords do not match']")
-    private WebElement passwordMismatchError;
-
-    // Already-exists error on username field
-    @FindBy(xpath = "//span[text()='Already exists']")
-    private WebElement alreadyExistsError;
-
-    // Search form — username field
-    @FindBy(xpath = "//label[text()='Username']/following::input[1]")
-    private WebElement searchUsernameInput;
-
-    @FindBy(xpath = "//button[normalize-space()='Search']")
-    private WebElement searchBtn;
-
-    // Results table rows
-    @FindBy(xpath = "//div[@class='oxd-table-card']")
-    private List<WebElement> tableRows;
-
-    // Job Titles page heading
-    @FindBy(xpath = "//h6[normalize-space()='Job Titles']")
-    private WebElement jobTitlesHeading;
-
-    // ─── ACTIONS ──────────────────────────────────────────────────────────
+    private final By searchBtn = By.xpath("//button[normalize-space()='Search']");
+    private final By searchUsernameInput = By.xpath("//label[normalize-space()='Username']/following::input[1]");
+    private final By passwordMismatchError = By.xpath("//span[contains(text(),'Passwords do not match')]");
+    private final By usernameExistsError = By.xpath("//span[contains(text(),'Already exists')]");
+    private final By jobTitlesHeading = By.xpath("//h6[normalize-space()='Job Titles']");
 
     public void clickAdminMenu() {
-        WaitFor.elementToBeClickable(adminMenuLink);
-        adminMenuLink.click();
+        WaitFor.click(adminMenu);
+        WaitFor.elementToBeVisible(By.xpath("//h6[normalize-space()='Admin']"));
     }
 
     public void clickAddUser() {
-        WaitFor.elementToBeClickable(addUserBtn);
-        addUserBtn.click();
+        WaitFor.click(addButton);
+        WaitFor.elementToBeVisible(usernameInput);
     }
 
-    /**
-     * Select user role via OrangeHRM custom dropdown.
-     * Clicks the wrapper, then selects the option by visible text.
-     */
     public void selectUserRole(String role) {
-        WaitFor.elementToBeClickable(userRoleDropdown);
-        userRoleDropdown.click();
-        By option = By.xpath("//div[@class='oxd-select-dropdown']//span[text()='" + role + "']");
-        WaitFor.elementToBeClickable(option);
-        Keyword.getDriver().findElement(option).click();
+        WaitFor.click(userRoleDropdown);
+        By roleOption = By.xpath("//div[@role='listbox']//span[normalize-space()='" + role + "']");
+        WaitFor.click(roleOption);
     }
 
     public void typeEmployeeName(String name) {
         WaitFor.elementToBeVisible(employeeNameInput);
         employeeNameInput.clear();
         employeeNameInput.sendKeys(name);
-        // Wait for autocomplete suggestion and click first match
-        By suggestion = By.xpath("//div[@class='oxd-autocomplete-dropdown']//span");
-        WaitFor.elementToBeClickable(suggestion);
-        Keyword.getDriver().findElement(suggestion).click();
+        // Wait for autocomplete suggestion
+        By suggestion = By.xpath("//div[@role='listbox']//span[contains(normalize-space(),'" + name + "')]");
+        try {
+            WaitFor.elementToBeVisible(suggestion);
+            Keyword.getDriver().findElement(suggestion).click();
+        } catch (Exception ignored) {
+            // If no suggestion appears, continue
+        }
     }
 
     public void selectStatus(String status) {
-        WaitFor.elementToBeClickable(statusDropdown);
-        statusDropdown.click();
-        By option = By.xpath("//div[@class='oxd-select-dropdown']//span[text()='" + status + "']");
-        WaitFor.elementToBeClickable(option);
-        Keyword.getDriver().findElement(option).click();
+        WaitFor.click(statusDropdown);
+        By statusOption = By.xpath("//div[@role='listbox']//span[normalize-space()='" + status + "']");
+        WaitFor.click(statusOption);
     }
 
     public void enterUsername(String username) {
@@ -127,62 +90,79 @@ public class AdminPage_New {
         usernameInput.sendKeys(username);
     }
 
-    public void enterPasswordAndConfirm(String password, String confirm) {
+    public void enterPasswordAndConfirm(String password, String confirmPassword) {
         WaitFor.elementToBeVisible(passwordInput);
         passwordInput.clear();
         passwordInput.sendKeys(password);
+
+        WaitFor.elementToBeVisible(confirmPasswordInput);
         confirmPasswordInput.clear();
-        confirmPasswordInput.sendKeys(confirm);
+        confirmPasswordInput.sendKeys(confirmPassword);
     }
 
     public void clickSave() {
-        WaitFor.elementToBeClickable(saveBtn);
-        saveBtn.click();
+        WaitFor.click(saveButton);
     }
 
     public void enterSearchUsername(String username) {
         WaitFor.elementToBeVisible(searchUsernameInput);
-        searchUsernameInput.clear();
-        searchUsernameInput.sendKeys(username);
+        Keyword.getDriver().findElement(searchUsernameInput).clear();
+        Keyword.getDriver().findElement(searchUsernameInput).sendKeys(username);
     }
 
     public void clickSearch() {
-        WaitFor.elementToBeClickable(searchBtn);
-        searchBtn.click();
-    }
-
-    public void clickAdminSubMenu(String section) {
-        By sectionMenu = By.xpath("//span[text()='" + section + "']");
-        WaitFor.elementToBeClickable(sectionMenu);
-        Keyword.getDriver().findElement(sectionMenu).click();
+        WaitFor.click(searchBtn);
     }
 
     public void clickAdminSubMenuItem(String item) {
-        By menuItem = By.xpath("//a[normalize-space()='" + item + "']");
-        WaitFor.elementToBeClickable(menuItem);
-        Keyword.getDriver().findElement(menuItem).click();
+        By link = By.xpath("//a[normalize-space()='" + item + "'] | //li[normalize-space()='" + item + "']");
+        WaitFor.click(link);
     }
 
-    // ─── VALIDATIONS ──────────────────────────────────────────────────────
-
     public boolean isUserInList(String username) {
-        By userCell = By.xpath("//div[@class='oxd-table-card']//div[normalize-space()='" + username + "']");
-        WaitFor.elementToBeVisible(userCell);
-        return Keyword.getDriver().findElement(userCell).isDisplayed();
+        try {
+            By userRow = By.xpath(String.format(AdminLocator.USER_ROW_BY_USERNAME, username));
+            WaitFor.elementToBeVisible(userRow);
+            return Keyword.getDriver().findElement(userRow).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getPasswordMismatchError() {
-        WaitFor.elementToBeVisible(passwordMismatchError);
-        return passwordMismatchError.getText();
+        try {
+            WaitFor.elementToBeVisible(passwordMismatchError);
+            return Keyword.getDriver().findElement(passwordMismatchError).getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     public String getUsernameAlreadyExistsError() {
-        WaitFor.elementToBeVisible(alreadyExistsError);
-        return alreadyExistsError.getText();
+        try {
+            WaitFor.elementToBeVisible(usernameExistsError);
+            return Keyword.getDriver().findElement(usernameExistsError).getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
     }
 
     public boolean isJobTitlesPageHeadingVisible() {
-        WaitFor.elementToBeVisible(jobTitlesHeading);
-        return jobTitlesHeading.isDisplayed();
+        try {
+            WaitFor.elementToBeVisible(jobTitlesHeading);
+            return Keyword.getDriver().findElement(jobTitlesHeading).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public String getUsernameAlreadyExistsError1() {
+        try {
+            By error = By.xpath("//span[contains(@class,'oxd-input-field-error-message')]");
+            WaitFor.elementToBeVisible(error);
+            return Keyword.getDriver().findElement(error).getText().trim();
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
